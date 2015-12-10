@@ -81,20 +81,20 @@ function getHash( url ) {
 // Shift 1: Monday 9am-10am
 
 var shift1 = [
-	document.getElementsByClassName("monday am9"),
-	document.getElementsByClassName("monday am10")
+  document.getElementsByClassName("monday am9"),
+  document.getElementsByClassName("monday am10")
 ]
 shift1[0][0].style.backgroundColor = "green";
 shift1[1][0].style.backgroundColor = "green";
 
 function changeColor1() {
-	if (shift1[0][0].style.backgroundColor == "green") {
-		shift1[0][0].style.backgroundColor = "red"
-		shift1[1][0].style.backgroundColor = "red"
-	} else {
-		shift1[0][0].style.backgroundColor = "green"
-		shift1[1][0].style.backgroundColor = "green"
-	}
+  if (shift1[0][0].style.backgroundColor == "green") {
+    shift1[0][0].style.backgroundColor = "red"
+    shift1[1][0].style.backgroundColor = "red"
+  } else {
+    shift1[0][0].style.backgroundColor = "green"
+    shift1[1][0].style.backgroundColor = "green"
+  }
 };
 
 shift1[0][0].addEventListener("click", changeColor1);
@@ -106,11 +106,11 @@ var shift2 = document.getElementsByClassName("tuesday am11");
 shift2[0].style.backgroundColor = "green";
 
 function changeColor2() {
-	if (shift2[0].style.backgroundColor == "green") {
-		shift2[0].style.backgroundColor = "red"
-	} else {
-		shift2[0].style.backgroundColor = "green"
-	}
+  if (shift2[0].style.backgroundColor == "green") {
+    shift2[0].style.backgroundColor = "red"
+  } else {
+    shift2[0].style.backgroundColor = "green"
+  }
 };
 
 shift2[0].addEventListener("click", changeColor2);
@@ -121,11 +121,11 @@ var shift3 = document.getElementsByClassName("thursday pm12");
 shift3[0].style.backgroundColor = "green";
 
 function changeColor3() {
-	if (shift3[0].style.backgroundColor == "green") {
-		shift3[0].style.backgroundColor = "red"
-	} else {
-		shift3[0].style.backgroundColor = "green"
-	}
+  if (shift3[0].style.backgroundColor == "green") {
+    shift3[0].style.backgroundColor = "red"
+  } else {
+    shift3[0].style.backgroundColor = "green"
+  }
 };
 
 shift3[0].addEventListener("click", changeColor3);
@@ -134,20 +134,20 @@ shift3[0].addEventListener("click", changeColor3);
 // Shift 4: Monday 9am
 
 var shift4 = [
-	document.getElementsByClassName("tuesday am8"),
-	document.getElementsByClassName("tuesday am9")
+  document.getElementsByClassName("tuesday am8"),
+  document.getElementsByClassName("tuesday am9")
 ]
 shift4[0][1].style.backgroundColor = "green";
 shift4[1][1].style.backgroundColor = "green";
 
 function changeColor4() {
-	if (shift4[0][1].style.backgroundColor == "green") {
-		shift4[0][1].style.backgroundColor = "red"
-		shift4[1][1].style.backgroundColor = "red"
-	} else {
-		shift4[0][1].style.backgroundColor = "green"
-		shift4[1][1].style.backgroundColor = "green"
-	}
+  if (shift4[0][1].style.backgroundColor == "green") {
+    shift4[0][1].style.backgroundColor = "red"
+    shift4[1][1].style.backgroundColor = "red"
+  } else {
+    shift4[0][1].style.backgroundColor = "green"
+    shift4[1][1].style.backgroundColor = "green"
+  }
 };
 
 shift4[0][1].addEventListener("click", changeColor4);
@@ -159,11 +159,11 @@ var shift5 = document.getElementsByClassName("wednesday pm12");
 shift5[1].style.backgroundColor = "green";
 
 function changeColor5() {
-	if (shift5[1].style.backgroundColor == "green") {
-		shift5[1].style.backgroundColor = "red"
-	} else {
-		shift5[1].style.backgroundColor = "green"
-	}
+  if (shift5[1].style.backgroundColor == "green") {
+    shift5[1].style.backgroundColor = "red"
+  } else {
+    shift5[1].style.backgroundColor = "green"
+  }
 };
 
 shift5[1].addEventListener("click", changeColor5);
@@ -174,11 +174,11 @@ var shift6 = document.getElementsByClassName("friday am10");
 shift6[1].style.backgroundColor = "green";
 
 function changeColor6() {
-	if (shift6[1].style.backgroundColor == "green") {
-		shift6[1].style.backgroundColor = "red"
-	} else {
-		shift6[1].style.backgroundColor = "green"
-	}
+  if (shift6[1].style.backgroundColor == "green") {
+    shift6[1].style.backgroundColor = "red"
+  } else {
+    shift6[1].style.backgroundColor = "green"
+  }
 };
 
 shift6[1].addEventListener("click", changeColor6);
@@ -248,4 +248,3 @@ function createNewTabFn(){
 
 var tabButton = document.getElementById("newTab");
 tabButton.addEventListener("click", createNewTabFn);
-
