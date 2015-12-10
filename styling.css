@@ -3,11 +3,41 @@
 	padding: 8%;
 }
 */
-
 body {
+	font-family: "Lato", sans-serif;
+	margin: auto;
+	text-align: center;
+}
+
+h2 {
+	letter-spacing: 3px;
+	font-weight: 300;
+	font-size: 28px;
+}
+select {
+	margin: auto;
+	padding: 100px;
+	font-family: "Lato", sans-serif;
+	font-weight: 300;
+	font-size: 24px;
+	height: 100px;
+}
+
+img {
+	margin: auto;
+	padding-top: 50px;
+}
+
+#addMore {
+	border: solid 1px, #D3EAFC;
+	border-radius: 50%;
+	padding: 10px;
+}
+
+/*body {
 	font-size: 110%;
 	font-family: 'Lucida Grande', Verdana, Arial, Sans-Serif;
-}
+}*/
 
 ul#tabs {
 	list-style-type: none;
