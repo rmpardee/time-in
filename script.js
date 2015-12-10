@@ -1,3 +1,14 @@
+//var template = "<div>something</div>"
+//$(table).append("<tr><td></td></tr>")
+//$("#targetDiv").html(template)
+
+//$("td").click(function(){
+//  console.log(this)
+//})
+//var Mark = {
+    //monday:{am8:"red", am9:"red", am10: "green"}
+//}
+
 var tabLinks = new Array();
     var contentDivs = new Array();
 
@@ -171,3 +182,70 @@ function changeColor6() {
 };
 
 shift6[1].addEventListener("click", changeColor6);
+
+
+// LET's TRY A NEW WAY: creating the tables dynamically
+
+var template = "
+  <table class="calendarGrid">
+    <tr id="row1">
+      <th class="timelabel daylabel"></th>
+      <th class="monday daylabel">Monday</th>
+      <th class="tuesday daylabel">Tuesday</th>
+      <th class="wednesday daylabel">Wednesday</th>
+      <th class="thursday daylabel">Thursday</th>
+      <th class="friday daylabel">Friday</th>
+    </tr>
+    <tr id="row2">
+      <td class="timelabel am8">8am</td>
+      <td class="monday am8"></td>
+      <td class="tuesday am8"></td>
+      <td class="wednesday am8"></td>
+      <td class="thursday am8"></td>
+      <td class="friday am8"></td>
+    </tr>
+    <tr id="row3">
+      <td class="timelabel am9">9am</td>
+      <td class="monday am9"></td>
+      <td class="tuesday am9"></td>
+      <td class="wednesday am9"></td>
+      <td class="thursday am9"></td>
+      <td class="friday am9"></td>
+    </tr>
+    <tr id="row4">
+      <td class="timelabel am10">10am</td>
+      <td class="monday am10"></td>
+      <td class="tuesday am10"></td>
+      <td class="wednesday am10"></td>
+      <td class="thursday am10"></td>
+      <td class="friday am10"></td>
+    </tr>
+    <tr id="row5">
+      <td class="timelabel am11">11am</td>
+      <td class="monday am11"></td>
+      <td class="tuesday am11"></td>
+      <td class="wednesday am11"></td>
+      <td class="thursday am11"></td>
+      <td class="friday am11"></td>
+    </tr>
+    <tr id="row6">
+      <td class="timelabel pm12">12pm</td>
+      <td class="monday pm12"></td>
+      <td class="tuesday pm12"></td>
+      <td class="wednesday pm12"></td>
+      <td class="thursday pm12"></td>
+      <td class="friday pm12"></td>
+    </tr>
+  </table>
+"
+
+function createNewTabFn(){
+  var ul = document.getElementById("tabs");
+  var li = "<li><a href="#myNewTab">My New Tab</a></li>"
+  ul.append.li
+
+}
+
+var tabButton = document.getElementById("newTab");
+tabButton.addEventListener("click", createNewTabFn);
+
