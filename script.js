@@ -1,20 +1,10 @@
-//var template = "<div>something</div>"
-//$(table).append("<tr><td></td></tr>")
-//$("#targetDiv").html(template)
 
-//$("td").click(function(){
-//  console.log(this)
-//})
-//var Mark = {
-    //monday:{am8:"red", am9:"red", am10: "green"}
-//}
+// SECTION 1: TABS - This code is mostly from an online tutorial
 
 var tabLinks = new Array();
-    var contentDivs = new Array();
-
-
+var contentDivs = new Array();
+    
 function init() {
-
       // Grab the tab links and content divs from the page
       var tabListItems = document.getElementById('tabs').childNodes;
       for ( var i = 0; i < tabListItems.length; i++ ) {
@@ -76,8 +66,8 @@ function getHash( url ) {
       return url.substring( hashPos + 1 );
     }
 
-
-// MARK
+// SECTION 2: SHIFTS
+// Mark
 // Shift 1: Monday 9am-10am
 
 var shift1 = [
@@ -130,12 +120,12 @@ function changeColor3() {
 
 shift3[0].addEventListener("click", changeColor3);
 
-// AMY
+// Amy
 // Shift 4: Monday 9am
 
 var shift4 = [
-  document.getElementsByClassName("tuesday am8"),
-  document.getElementsByClassName("tuesday am9")
+  document.getElementsByClassName("monday am9"),
+  document.getElementsByClassName("monday am10")
 ]
 shift4[0][1].style.backgroundColor = "green";
 shift4[1][1].style.backgroundColor = "green";
@@ -155,7 +145,7 @@ shift4[1][1].addEventListener("click", changeColor4);
 
 // Shift 5: Tuesday 11am
 
-var shift5 = document.getElementsByClassName("wednesday pm12");
+var shift5 = document.getElementsByClassName("tuesday am11");
 shift5[1].style.backgroundColor = "green";
 
 function changeColor5() {
@@ -170,7 +160,7 @@ shift5[1].addEventListener("click", changeColor5);
 
 // Shift 6: Thursday 12pm
 
-var shift6 = document.getElementsByClassName("friday am10");
+var shift6 = document.getElementsByClassName("thursday pm12");
 shift6[1].style.backgroundColor = "green";
 
 function changeColor6() {
@@ -184,67 +174,148 @@ function changeColor6() {
 shift6[1].addEventListener("click", changeColor6);
 
 
-// LET's TRY A NEW WAY: creating the tables dynamically
-
-var template = "
-  <table class="calendarGrid">
-    <tr id="row1">
-      <th class="timelabel daylabel"></th>
-      <th class="monday daylabel">Monday</th>
-      <th class="tuesday daylabel">Tuesday</th>
-      <th class="wednesday daylabel">Wednesday</th>
-      <th class="thursday daylabel">Thursday</th>
-      <th class="friday daylabel">Friday</th>
-    </tr>
-    <tr id="row2">
-      <td class="timelabel am8">8am</td>
-      <td class="monday am8"></td>
-      <td class="tuesday am8"></td>
-      <td class="wednesday am8"></td>
-      <td class="thursday am8"></td>
-      <td class="friday am8"></td>
-    </tr>
-    <tr id="row3">
-      <td class="timelabel am9">9am</td>
-      <td class="monday am9"></td>
-      <td class="tuesday am9"></td>
-      <td class="wednesday am9"></td>
-      <td class="thursday am9"></td>
-      <td class="friday am9"></td>
-    </tr>
-    <tr id="row4">
-      <td class="timelabel am10">10am</td>
-      <td class="monday am10"></td>
-      <td class="tuesday am10"></td>
-      <td class="wednesday am10"></td>
-      <td class="thursday am10"></td>
-      <td class="friday am10"></td>
-    </tr>
-    <tr id="row5">
-      <td class="timelabel am11">11am</td>
-      <td class="monday am11"></td>
-      <td class="tuesday am11"></td>
-      <td class="wednesday am11"></td>
-      <td class="thursday am11"></td>
-      <td class="friday am11"></td>
-    </tr>
-    <tr id="row6">
-      <td class="timelabel pm12">12pm</td>
-      <td class="monday pm12"></td>
-      <td class="tuesday pm12"></td>
-      <td class="wednesday pm12"></td>
-      <td class="thursday pm12"></td>
-      <td class="friday pm12"></td>
-    </tr>
-  </table>
-"
+// SECTION 3: CREATING NEW TABS
 
 function createNewTabFn(){
-  var ul = document.getElementById("tabs");
-  var li = "<li><a href="#myNewTab">My New Tab</a></li>"
-  ul.append.li
+    console.log("createNewTabFn was called since this is displaying!");
+    // Ask for the name
+    var userEnteredName = prompt("Employee's Name");
 
-}
+    // Add the tab list item to the list of tabs
+    var ul = document.getElementById("tabs");
+    var li = document.createElement("li");
+    var aTag = document.createElement("a");
+    aTag.href = "#" + userEnteredName;
+    aTag.innerHTML = userEnteredName;
+
+    li.appendChild(aTag);
+    ul.appendChild(li);
+
+    // div
+    var div = document.createElement("div");
+    div.className = "tabContent";
+    div.id = userEnteredName;
+
+    // table
+    var newTable = document.createElement("table");
+    newTable.className = "calendarGrid";
+
+    // header row
+    var trRow1 = document.createElement("tr");
+    trRow1.id = "row1";
+    // header row items
+    var th1 = document.createElement("th");
+    th1.className = "timelabel daylabel";
+    var th2 = document.createElement("th");
+    th2.className = "monday daylabel";
+    th2.innerHTML = "Monday";
+    var th3 = document.createElement("th");
+    th3.className = "tuesday daylabel";
+    th3.innerHTML = "Tuesday";
+    var th4 = document.createElement("th");
+    th4.className = "wednesday daylabel";
+    th4.innerHTML = "Wednesday";
+    var th5 = document.createElement("th");
+    th5.className = "thursday daylabel";
+    th5.innerHTML = "Thursday";
+    var th6 = document.createElement("th");
+    th6.className = "friday daylabel";
+    th6.innerHTML = "Friday";
+    
+    // time row
+    var trRow2 = document.createElement("tr");
+    trRow2.id = "row2";
+    // time row items
+    var td1 = document.createElement("td");
+    td1.className = "timelabel am8";
+    td1.innerHTML = "8am";
+    var td2 = document.createElement("td");
+    td2.className = "monday am8";
+    var td3 = document.createElement("td");
+    td3.className = "tuesday am8";
+    var td4 = document.createElement("td");
+    td4.className = "wednesday am8";
+    var td5 = document.createElement("td");
+    td5.className = "thursday am8";
+    var td6 = document.createElement("td");
+    td6.className = "friday am8";
+
+    // time row
+    var trRow3 = document.createElement("tr");
+    trRow3.id = "row3";
+    // time row items
+    var td7 = document.createElement("td");
+    td7.className = "timelabel am9";
+    td7.innerHTML = "9am";
+    var td8 = document.createElement("td");
+    td8.className = "monday am9";
+    var td9 = document.createElement("td");
+    td9.className = "tuesday am9";
+    var td10 = document.createElement("td");
+    td10.className = "wednesday am9";
+    var td11 = document.createElement("td");
+    td11.className = "thursday am9";
+    var td12 = document.createElement("td");
+    td12.className = "friday am9";
+
+    // time row
+    var trRow4 = document.createElement("tr");
+    trRow4.id = "row4";
+    // time row items
+    var td13 = document.createElement("td");
+    td13.className = "timelabel am10";
+    td13.innerHTML = "10am";
+    var td14 = document.createElement("td");
+    td14.className = "monday am10";
+    var td15 = document.createElement("td");
+    td15.className = "tuesday am10";
+    var td16 = document.createElement("td");
+    td16.className = "wednesday am10";
+    var td17 = document.createElement("td");
+    td17.className = "thursday am10";
+    var td18 = document.createElement("td");
+    td18.className = "friday am10";
+
+    // add it all to the body
+    trRow1.appendChild(th1);
+    trRow1.appendChild(th2);
+    trRow1.appendChild(th3);
+    trRow1.appendChild(th4);
+    trRow1.appendChild(th5);
+    trRow1.appendChild(th6);
+
+    trRow2.appendChild(td1);
+    trRow2.appendChild(td2);
+    trRow2.appendChild(td3);
+    trRow2.appendChild(td4);
+    trRow2.appendChild(td5);
+    trRow2.appendChild(td6);
+
+    trRow3.appendChild(td7);
+    trRow3.appendChild(td8);
+    trRow3.appendChild(td9);
+    trRow3.appendChild(td10);
+    trRow3.appendChild(td11);
+    trRow3.appendChild(td12);
+
+    trRow4.appendChild(td13);
+    trRow4.appendChild(td14);
+    trRow4.appendChild(td15);
+    trRow4.appendChild(td16);
+    trRow4.appendChild(td17);
+    trRow4.appendChild(td18);
+
+    newTable.appendChild(trRow1);
+    newTable.appendChild(trRow2);
+    newTable.appendChild(trRow3);
+    newTable.appendChild(trRow4);
+
+    div.appendChild(newTable);
+    document.body.appendChild(div);
+
+    // Make the tabs work
+    init();
+};
 
 var tabButton = document.getElementById("newTab");
 tabButton.addEventListener("click", createNewTabFn);
