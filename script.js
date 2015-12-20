@@ -70,35 +70,35 @@ function getHash( url ) {
 // SECTION 2: CREATING NEW TABS
 
 // Shift array (output from Sara's page)
-    var myShifts = [
-      ["monday am8",
-       "monday am9",
-       "monday am10",
-       "monday am11",
-       "monday pm12"],
-      ["tuesday am11",
-       "tuesday pm12",
-       "tuesday pm1",
-       "tuesday pm2",
-       "tuesday pm3",
-       "tuesday pm4",
-       "tuesday pm5"],
-      ["wednesday am8",
-       "wednesday am9",
-       "wednesday am10",
-       "wednesday am11",
-       "wednesday pm12"],
-      ["thursday pm1",
-       "thursday pm2",
-       "thursday pm3",
-       "thursday pm4",
-       "thursday pm5"],
-      ["friday am11",
-       "friday pm12",
-       "friday pm1",
-       "friday pm2",
-       "friday pm3"]
-    ];
+var myShifts = [
+  ["monday am8",
+   "monday am9",
+   "monday am10",
+   "monday am11",
+   "monday pm12"],
+  ["tuesday am11",
+   "tuesday pm12",
+   "tuesday pm1",
+   "tuesday pm2",
+   "tuesday pm3",
+   "tuesday pm4",
+   "tuesday pm5"],
+  ["wednesday am8",
+   "wednesday am9",
+   "wednesday am10",
+   "wednesday am11",
+   "wednesday pm12"],
+  ["thursday pm1",
+   "thursday pm2",
+   "thursday pm3",
+   "thursday pm4",
+   "thursday pm5"],
+  ["friday am11",
+   "friday pm12",
+   "friday pm1",
+   "friday pm2",
+   "friday pm3"]
+];
 
 // Crazy long function to actually create the new tabs!
 var counter = 0;

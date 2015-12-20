@@ -77,6 +77,49 @@
 			</table>
 		</div>
 		
+		<script>
+function addShift(event) {
+  event.preventDefault(); // necessary to prevent the submitting of a form
+        console.log("submitted");
+        var table = document.getElementById("table");
+        var day = $("#day option:selected").val();
+
+        var start = $("#startTime option:selected").val();
+        var startTime = $("#startTime option:selected").attr("class");
+        var startNum = Number(startTime);
+
+        var end = $("#endTime option:selected").val();
+        var endTime = $("#endTime option:selected").attr("class");
+        var endNum = Number(endTime);
+        
+        var myShift = [];
+
+        for (var i = startNum; i<endNum; i++) {
+            var shiftText = (day + " " + i)
+            myShift.push(shiftText);
+        };
+        console.log(myShift);
+
+
+        var row = document.createElement("tr");
+        var data = document.createElement("td");
+
+        data.appendChild(document.createTextNode(day));
+        row.appendChild(data);
+        table.appendChild(row);
+
+        var data = document.createElement("td");
+        data.appendChild(document.createTextNode(start));
+        row.appendChild(data);
+        table.appendChild(row);
+
+        var data = document.createElement("td");
+        data.appendChild(document.createTextNode(end));
+        row.appendChild(data);
+        table.appendChild(row);
+  };
+  $("#submit").click(addShift);
+		</script>
 
 	</body>
 
