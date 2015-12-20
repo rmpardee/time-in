@@ -66,118 +66,44 @@ function getHash( url ) {
       return url.substring( hashPos + 1 );
     }
 
-// SECTION 2: SHIFTS
-// Mark
-// Shift 1: Monday 9am-10am
 
-var shift1 = [
-  document.getElementsByClassName("monday am9"),
-  document.getElementsByClassName("monday am10")
-]
-shift1[0][0].style.backgroundColor = "green";
-shift1[1][0].style.backgroundColor = "green";
+// SECTION 2: CREATING NEW TABS
 
-function changeColor1() {
-  if (shift1[0][0].style.backgroundColor == "green") {
-    shift1[0][0].style.backgroundColor = "red"
-    shift1[1][0].style.backgroundColor = "red"
-  } else {
-    shift1[0][0].style.backgroundColor = "green"
-    shift1[1][0].style.backgroundColor = "green"
-  }
-};
+// Shift array (output from Sara's page)
+    var myShifts = [
+      ["monday am8",
+       "monday am9",
+       "monday am10",
+       "monday am11",
+       "monday pm12"],
+      ["tuesday am11",
+       "tuesday pm12",
+       "tuesday pm1",
+       "tuesday pm2",
+       "tuesday pm3",
+       "tuesday pm4",
+       "tuesday pm5"],
+      ["wednesday am8",
+       "wednesday am9",
+       "wednesday am10",
+       "wednesday am11",
+       "wednesday pm12"],
+      ["thursday pm1",
+       "thursday pm2",
+       "thursday pm3",
+       "thursday pm4",
+       "thursday pm5"],
+      ["friday am11",
+       "friday pm12",
+       "friday pm1",
+       "friday pm2",
+       "friday pm3"]
+    ];
 
-shift1[0][0].addEventListener("click", changeColor1);
-shift1[1][0].addEventListener("click", changeColor1);
-
-// Shift 2: Tuesday 11am
-
-var shift2 = document.getElementsByClassName("tuesday am11");
-shift2[0].style.backgroundColor = "green";
-
-function changeColor2() {
-  if (shift2[0].style.backgroundColor == "green") {
-    shift2[0].style.backgroundColor = "red"
-  } else {
-    shift2[0].style.backgroundColor = "green"
-  }
-};
-
-shift2[0].addEventListener("click", changeColor2);
-
-// Shift 3: Thursday 12pm
-
-var shift3 = document.getElementsByClassName("thursday pm12");
-shift3[0].style.backgroundColor = "green";
-
-function changeColor3() {
-  if (shift3[0].style.backgroundColor == "green") {
-    shift3[0].style.backgroundColor = "red"
-  } else {
-    shift3[0].style.backgroundColor = "green"
-  }
-};
-
-shift3[0].addEventListener("click", changeColor3);
-
-// Amy
-// Shift 4: Monday 9am
-
-var shift4 = [
-  document.getElementsByClassName("monday am9"),
-  document.getElementsByClassName("monday am10")
-]
-shift4[0][1].style.backgroundColor = "green";
-shift4[1][1].style.backgroundColor = "green";
-
-function changeColor4() {
-  if (shift4[0][1].style.backgroundColor == "green") {
-    shift4[0][1].style.backgroundColor = "red"
-    shift4[1][1].style.backgroundColor = "red"
-  } else {
-    shift4[0][1].style.backgroundColor = "green"
-    shift4[1][1].style.backgroundColor = "green"
-  }
-};
-
-shift4[0][1].addEventListener("click", changeColor4);
-shift4[1][1].addEventListener("click", changeColor4);
-
-// Shift 5: Tuesday 11am
-
-var shift5 = document.getElementsByClassName("tuesday am11");
-shift5[1].style.backgroundColor = "green";
-
-function changeColor5() {
-  if (shift5[1].style.backgroundColor == "green") {
-    shift5[1].style.backgroundColor = "red"
-  } else {
-    shift5[1].style.backgroundColor = "green"
-  }
-};
-
-shift5[1].addEventListener("click", changeColor5);
-
-// Shift 6: Thursday 12pm
-
-var shift6 = document.getElementsByClassName("thursday pm12");
-shift6[1].style.backgroundColor = "green";
-
-function changeColor6() {
-  if (shift6[1].style.backgroundColor == "green") {
-    shift6[1].style.backgroundColor = "red"
-  } else {
-    shift6[1].style.backgroundColor = "green"
-  }
-};
-
-shift6[1].addEventListener("click", changeColor6);
-
-
-// SECTION 3: CREATING NEW TABS
+// Crazy long function to actually create the new tabs!
+var counter = 0;
 
 function createNewTabFn(){
-    console.log("createNewTabFn was called since this is displaying!");
     // Ask for the name
     var userEnteredName = prompt("Employee's Name");
 
@@ -276,6 +202,132 @@ function createNewTabFn(){
     var td18 = document.createElement("td");
     td18.className = "friday am10";
 
+    // time row
+    var trRow5 = document.createElement("tr");
+    trRow5.id = "row5";
+    // time row items
+    var td19 = document.createElement("td");
+    td19.className = "timelabel am11";
+    td19.innerHTML = "11am";
+    var td20 = document.createElement("td");
+    td20.className = "monday am11";
+    var td21 = document.createElement("td");
+    td21.className = "tuesday am11";
+    var td22 = document.createElement("td");
+    td22.className = "wednesday am11";
+    var td23 = document.createElement("td");
+    td23.className = "thursday am11";
+    var td24 = document.createElement("td");
+    td24.className = "friday am11";
+
+    // time row
+    var trRow6 = document.createElement("tr");
+    trRow6.id = "row6";
+    // time row items
+    var td25 = document.createElement("td");
+    td25.className = "timelabel pm12";
+    td25.innerHTML = "12pm";
+    var td26 = document.createElement("td");
+    td26.className = "monday pm12";
+    var td27 = document.createElement("td");
+    td27.className = "tuesday pm12";
+    var td28 = document.createElement("td");
+    td28.className = "wednesday pm12";
+    var td29 = document.createElement("td");
+    td29.className = "thursday pm12";
+    var td30 = document.createElement("td");
+    td30.className = "friday pm12";
+
+    // time row
+    var trRow7 = document.createElement("tr");
+    trRow7.id = "row7";
+    // time row items
+    var td31 = document.createElement("td");
+    td31.className = "timelabel pm1";
+    td31.innerHTML = "1pm";
+    var td32 = document.createElement("td");
+    td32.className = "monday pm1";
+    var td33 = document.createElement("td");
+    td33.className = "tuesday pm1";
+    var td34 = document.createElement("td");
+    td34.className = "wednesday pm1";
+    var td35 = document.createElement("td");
+    td35.className = "thursday pm1";
+    var td36 = document.createElement("td");
+    td36.className = "friday pm1";
+
+    // time row
+    var trRow8 = document.createElement("tr");
+    trRow8.id = "row8";
+    // time row items
+    var td37 = document.createElement("td");
+    td37.className = "timelabel pm2";
+    td37.innerHTML = "2pm";
+    var td38 = document.createElement("td");
+    td38.className = "monday pm2";
+    var td39 = document.createElement("td");
+    td39.className = "tuesday pm2";
+    var td40 = document.createElement("td");
+    td40.className = "wednesday pm2";
+    var td41 = document.createElement("td");
+    td41.className = "thursday pm2";
+    var td42 = document.createElement("td");
+    td42.className = "friday pm2";
+
+    // time row
+    var trRow9 = document.createElement("tr");
+    trRow9.id = "row9";
+    // time row items
+    var td43 = document.createElement("td");
+    td43.className = "timelabel pm3";
+    td43.innerHTML = "3pm";
+    var td44 = document.createElement("td");
+    td44.className = "monday pm3";
+    var td45 = document.createElement("td");
+    td45.className = "tuesday pm3";
+    var td46 = document.createElement("td");
+    td46.className = "wednesday pm3";
+    var td47 = document.createElement("td");
+    td47.className = "thursday pm3";
+    var td48 = document.createElement("td");
+    td48.className = "friday pm3";
+
+    // time row
+    var trRow10 = document.createElement("tr");
+    trRow10.id = "row10";
+    // time row items
+    var td49 = document.createElement("td");
+    td49.className = "timelabel pm4";
+    td49.innerHTML = "4pm";
+    var td50 = document.createElement("td");
+    td50.className = "monday pm4";
+    var td51 = document.createElement("td");
+    td51.className = "tuesday pm4";
+    var td52 = document.createElement("td");
+    td52.className = "wednesday pm4";
+    var td53 = document.createElement("td");
+    td53.className = "thursday pm4";
+    var td54 = document.createElement("td");
+    td54.className = "friday pm4";
+
+    // time row
+    var trRow11 = document.createElement("tr");
+    trRow11.id = "row11";
+    // time row items
+    var td55 = document.createElement("td");
+    td55.className = "timelabel pm5";
+    td55.innerHTML = "5pm";
+    var td56 = document.createElement("td");
+    td56.className = "monday pm5";
+    var td57 = document.createElement("td");
+    td57.className = "tuesday pm5";
+    var td58 = document.createElement("td");
+    td58.className = "wednesday pm5";
+    var td59 = document.createElement("td");
+    td59.className = "thursday pm5";
+    var td60 = document.createElement("td");
+    td60.className = "friday pm5";
+
     // add it all to the body
     trRow1.appendChild(th1);
     trRow1.appendChild(th2);
@@ -305,17 +357,142 @@ function createNewTabFn(){
     trRow4.appendChild(td17);
     trRow4.appendChild(td18);
 
+    trRow5.appendChild(td19);
+    trRow5.appendChild(td20);
+    trRow5.appendChild(td21);
+    trRow5.appendChild(td22);
+    trRow5.appendChild(td23);
+    trRow5.appendChild(td24);
+
+    trRow6.appendChild(td25);
+    trRow6.appendChild(td26);
+    trRow6.appendChild(td27);
+    trRow6.appendChild(td28);
+    trRow6.appendChild(td29);
+    trRow6.appendChild(td30);
+
+    trRow7.appendChild(td31);
+    trRow7.appendChild(td32);
+    trRow7.appendChild(td33);
+    trRow7.appendChild(td34);
+    trRow7.appendChild(td35);
+    trRow7.appendChild(td36);
+
+    trRow8.appendChild(td37);
+    trRow8.appendChild(td38);
+    trRow8.appendChild(td39);
+    trRow8.appendChild(td40);
+    trRow8.appendChild(td41);
+    trRow8.appendChild(td42);
+
+    trRow9.appendChild(td43);
+    trRow9.appendChild(td44);
+    trRow9.appendChild(td45);
+    trRow9.appendChild(td46);
+    trRow9.appendChild(td47);
+    trRow9.appendChild(td48);
+
+    trRow10.appendChild(td49);
+    trRow10.appendChild(td50);
+    trRow10.appendChild(td51);
+    trRow10.appendChild(td52);
+    trRow10.appendChild(td53);
+    trRow10.appendChild(td54);
+
+    trRow11.appendChild(td55);
+    trRow11.appendChild(td56);
+    trRow11.appendChild(td57);
+    trRow11.appendChild(td58);
+    trRow11.appendChild(td59);
+    trRow11.appendChild(td60);
+
     newTable.appendChild(trRow1);
     newTable.appendChild(trRow2);
     newTable.appendChild(trRow3);
     newTable.appendChild(trRow4);
+    newTable.appendChild(trRow5);
+    newTable.appendChild(trRow6);
+    newTable.appendChild(trRow7);
+    newTable.appendChild(trRow8);
+    newTable.appendChild(trRow9);
+    newTable.appendChild(trRow10);
+    newTable.appendChild(trRow11);
 
     div.appendChild(newTable);
     document.body.appendChild(div);
 
     // Make the tabs work
     init();
+
+    // Function to add the shifts
+    function dynamAddShifts(myShiftArray) {
+      for (i = 0; i < myShiftArray.length; i++) {
+        for (j = 0; j < myShiftArray[i].length; j++) {
+          var shortCut = document.getElementsByClassName(myShiftArray[i][j])[counter];
+
+          // Save the values of i, j, and counter at time of creation
+          shortCut.setAttribute("data-i", i);
+          shortCut.setAttribute("data-j", j);
+          shortCut.setAttribute("data-counter", counter);
+
+          // Set original color of the shifts
+          shortCut.setAttribute("data-status", "available");
+
+          // Have color toggle with click
+          shortCut.addEventListener("click", toggleColorWithClick.bind(shortCut));
+        }
+      }
+    };
+
+    function toggleColorWithClick() {
+      var i = this.getAttribute("data-i")
+      var j = this.getAttribute("data-j")
+      var whichTab = this.getAttribute("data-counter")
+      var newShortCut = document.getElementsByClassName(myShifts[i][j])[whichTab];
+
+      if (this.getAttribute("data-status") == "available") {
+        for (k = 0; k < myShifts[i].length; k++) {
+          var newShortCut2 = document.getElementsByClassName(myShifts[i][k])[whichTab];
+          newShortCut2.setAttribute("data-status", "notAvailable");
+        }
+      } else {
+        for (k = 0; k < myShifts[i].length; k++) {
+          var newShortCut2 = document.getElementsByClassName(myShifts[i][k])[whichTab];
+          newShortCut2.setAttribute("data-status", "available");
+        }
+      }
+      }; 
+
+    dynamAddShifts(myShifts);
+
+    
+    // function toggleColorWithClick(myShiftArray) {
+    //   var newShortCut = document.getElementsByClassName(myShiftArray[0][0])[counter];
+    //   newShortCut.addEventListener("click", function() {
+    //     if (newShortCut.style.backgroundColor == "purple") {
+    //       for (k = 0; k < myShiftArray[0].length; k++) {
+    //         var newShortCut2 = document.getElementsByClassName(myShiftArray[0][k])[counter];
+    //         newShortCut2.style.backgroundColor = "orange";
+    //       }
+    //     } else {
+    //       for (k = 0; k < myShiftArray[0].length; k++) {
+    //         var newShortCut2 = document.getElementsByClassName(myShiftArray[0][k])[counter];
+    //         newShortCut2.style.backgroundColor = "purple";
+    //       }
+    //     }
+    //   });
+    // };
+
+    counter++;
 };
+
 
 var tabButton = document.getElementById("newTab");
 tabButton.addEventListener("click", createNewTabFn);
+
+
+
+
+
+
+

@@ -1,8 +1,3 @@
-/*#calendarGrid {
-	border: 3px solid black;
-	padding: 8%;
-}
-*/
 body {
 	font-family: "Lato", sans-serif;
 	margin: auto;
@@ -88,4 +83,12 @@ td.timelabel {
 
 td.daylabel {
 	border: none;
+}
+
+[data-status="available"] {
+	background-color: green;
+}
+
+[data-status="notAvailable"] {
+	background-color: red;
 }
