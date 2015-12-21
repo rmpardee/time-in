@@ -7,10 +7,10 @@
 
 		<!-- Bootstrap -->
 		<meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  		<meta name="viewport" content="width=device-width, initial-scale=1">
+  		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 		<!-- jQuery -->
 		 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
@@ -18,14 +18,18 @@
 		<!--  Font -->
 		<link href='https://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
 
+		<!-- Our css file -->
+		<link rel="stylesheet" type="text/css" href="styling.css">
 	</head>
 
 	<body>
 		<div class= "container">
-		<img src="time-in.png" width="600px" align="center"> 
-		<h2>What shifts do you need covered?</h2>
-		<div class="form-group row" id="choicees">
-      	<select class="day form-control col-sm-4" id="day">
+			<img src="time-in.png" width="600px" align="center"> 
+			<h2>What shifts do you need covered?</h2>
+			<br>
+			<div class="form-group row" id="choices">
+				<div class = "col-xs-3">
+      			<select class="day form-control" id="day">
       			<option value "" disabled selected>Day</option>
 				<option id="monday">Monday</option>
 				<option id="tuesday">Tuesday</option>
@@ -34,9 +38,11 @@
 				<option id="friday">Friday</option>
 				<option id="saturday">Saturday</option>
 				<option id="sunday">Sunday</option>
-			</select>
+				</select>
+				</div>	
 
-			<select class = "startTime form-control col-sm-4" id="startTime">
+				<div class="col-xs-3">
+				<select class = "startTime form-control" id="startTime">
 				<option value = "" disabled selected>Start Time</option>
 				<option class = "7">7:00 am</option>
 				<option class="8">8:00 am</option>
@@ -49,9 +55,11 @@
 				<option class="15">3:00 pm</option>
 				<option class="16">4:00 pm</option>
 				<option class="17">5:00 pm</option>
-			</select>
+				</select>
+				</div>
 
-			<select class = "endTime form-control col-sm-4" id = "endTime">
+				<div class="col-xs-3">
+				<select class = "endTime form-control" id = "endTime">
 				<option value="" disabled selected>End Time</option>
 				<option class="8">8:00 am</option>
 				<option class='9"'>9:00 am</option>
@@ -63,15 +71,18 @@
 				<option class="15">3:00 pm</option>
 				<option class="16">4:00 pm</option>
 				<option class="17">5:00 pm</option>
-			</select>
+				</select>
+				</div>
 
 			<button id="submit" type="submit" class="btn btn-sm">OK</button>
-			<br><br>
+
+		</div>
+	
 		</div>
 		</form>
 
 		<div style="width:900px; margin:auto">
-			<table id = "table" style="width: 235px;
+			<table class="table table-striped" id = "table" style="width: 400px;
     margin: auto;">
 				<thead>
 					<tr>
@@ -86,7 +97,7 @@
 					</tr>
 				</tbody>
 			</table>
-			<button type ="button" class = "btn btn-primary btn-lg" id="seeAll">Schedule shifts</button>
+			<a href="page2.html" class="btn btn-info" role="button" id="seeAll">Schedule shifts</a>
 		</div>
 			
 </div>

@@ -1,27 +1,44 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<title>TimeIn</title>
-	<link rel="stylesheet" type="text/css" href="styling.css">
-</head>
-<body onload="init()" onload="createNewTabFn()">
-	<button id="newTab">Create New Tab</button>
-	<button id="seeAll">See All</button>
+<html lang="en">
+	<head>
+		<!-- Title and Favicon -->
+		<title>TimeIN Scheduler</title>
+		<link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
 
-	<ul id="tabs">
-		<!-- Dynamically added with each new tab with JS -->
-	</ul>
+		<!-- Bootstrap -->
+		<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+			<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-	<!-- Table within a div dynamically added with each new tab with JS -->
+		<!-- jQuery -->
+		 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 
-	<div id="overlay">
-		<div>
-			<ul id="nameList"></ul>
-			<!-- Adding names dynamically here with JS -->
-			<a href='#' onclick='overlayClose()'>close</a>
+		<!--  Font -->
+		<link href='https://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
+
+		<!-- Our css file -->
+		<link rel="stylesheet" type="text/css" href="styling.css">
+	</head>
+	<body onload="init()" onload="createNewTabFn()">
+		<button id="newTab">Create New Tab</button>
+		<button id="seeAll">See All</button>
+
+		<ul id="tabs">
+			<!-- Dynamically added with each new tab with JS -->
+		</ul>
+
+		<!-- Table within a div dynamically added with each new tab with JS -->
+
+		<div id="overlay">
+			<div>
+				<ul id="nameList"></ul>
+				<!-- Adding names dynamically here with JS -->
+				<a href='#' onclick='overlayClose()'>close</a>
+			</div>
 		</div>
-	</div>
 
-	<script src="script.js"></script>
-</body>
+		<script src="script.js"></script>
+	</body>
 </html>
