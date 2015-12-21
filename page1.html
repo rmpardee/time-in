@@ -1,22 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
-
+		<!-- Title and Favicon -->
 		<title>TimeIN Scheduler</title>
 		<link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
-		<link rel="stylesheet" href="styling.css" />
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+		<!-- Bootstrap -->
+		<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+		<!-- jQuery -->
+		 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+		<!--  Font -->
 		<link href='https://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
 
 	</head>
 
 	<body>
-		<img src="time-in.png" margin="auto" width="400 px"> 
+		<div class= "container">
+		<img src="time-in.png" width="600px" align="center"> 
 		<h2>What shifts do you need covered?</h2>
-		<div id="choices">
-			<form>
-			<select class="day" placeholder="Day" id="day">
-				<option value=" " disabled selected>Select Day</option>
+		<div class="form-group row" id="choicees">
+      	<select class="day form-control col-sm-4" id="day">
+      			<option value "" disabled selected>Day</option>
 				<option id="monday">Monday</option>
 				<option id="tuesday">Tuesday</option>
 				<option id="wednesday">Wednesday</option>
@@ -26,9 +36,9 @@
 				<option id="sunday">Sunday</option>
 			</select>
 
-			<select class="startTime" id="startTime">
+			<select class = "startTime form-control col-sm-4" id="startTime">
 				<option value = "" disabled selected>Start Time</option>
-				<option class="7">7:00 am</option>
+				<option class = "7">7:00 am</option>
 				<option class="8">8:00 am</option>
 				<option class="9">9:00 am</option>
 				<option class="10">10:00 am</option>
@@ -41,7 +51,7 @@
 				<option class="17">5:00 pm</option>
 			</select>
 
-			<select name="endTime" id="endTime">
+			<select class = "endTime form-control col-sm-4" id = "endTime">
 				<option value="" disabled selected>End Time</option>
 				<option class="8">8:00 am</option>
 				<option class='9"'>9:00 am</option>
@@ -55,13 +65,14 @@
 				<option class="17">5:00 pm</option>
 			</select>
 
-			<button id="submit" type="submit">OK</button>
+			<button id="submit" type="submit" class="btn btn-sm">OK</button>
 			<br><br>
+		</div>
 		</form>
 
 		<div style="width:900px; margin:auto">
-			<table id="table" style="width: 235px;
-    margin:auto;">
+			<table id = "table" style="width: 235px;
+    margin: auto;">
 				<thead>
 					<tr>
 						<th>Day</th>
@@ -75,52 +86,90 @@
 					</tr>
 				</tbody>
 			</table>
+			<button type ="button" class = "btn btn-primary btn-lg" id="seeAll">Schedule shifts</button>
 		</div>
-		
-		<script>
+			
+</div>
+	</body>
+
+	<script>
+var myShift = [];
+var allShifts = [];
+
 function addShift(event) {
   event.preventDefault(); // necessary to prevent the submitting of a form
-        console.log("submitted");
-        var table = document.getElementById("table");
-        var day = $("#day option:selected").val();
+  		console.log("submitted");
+  		var table = document.getElementById("table");
+  		var day = $("#day option:selected").val();
 
-        var start = $("#startTime option:selected").val();
-        var startTime = $("#startTime option:selected").attr("class");
-        var startNum = Number(startTime);
+  		var start = $("#startTime option:selected").val();
+  		var startTime = $("#startTime option:selected").attr("class");
+  		var startNum = Number(startTime);
 
-        var end = $("#endTime option:selected").val();
-        var endTime = $("#endTime option:selected").attr("class");
-        var endNum = Number(endTime);
-        
-        var myShift = [];
+  		var end = $("#endTime option:selected").val();
+  		var endTime = $("#endTime option:selected").attr("class");
+  		var endNum = Number(endTime);
 
-        for (var i = startNum; i<endNum; i++) {
-            var shiftText = (day + " " + i)
-            myShift.push(shiftText);
-        };
-        console.log(myShift);
+  		if (startNum > endNum) {
+  				alert("Start time must be before end time. This shift will not be available to schedule.");
+  			};
+  		
+  		myShift = [];
+
+  		for (var i = startNum; i<endNum; i++) {
+
+  			if (i<=11) {
+  				var shiftText = (day + " am" + i);
+  			}
+
+  			else if (i==12) {
+  				var shiftText = (day + " pm" + i);
+  			}
+
+  			else {
+  				var j = i-12;
+  				var shiftText = (day + " pm" + j);
+  			};
+  			myShift.push(shiftText);
+  		};
+
+  		console.log(myShift);
 
 
-        var row = document.createElement("tr");
-        var data = document.createElement("td");
+  		var row = document.createElement("tr");
+  		var data = document.createElement("td");
 
-        data.appendChild(document.createTextNode(day));
-        row.appendChild(data);
-        table.appendChild(row);
+  		data.appendChild(document.createTextNode(day));
+  		row.appendChild(data);
+  		table.appendChild(row);
 
-        var data = document.createElement("td");
-        data.appendChild(document.createTextNode(start));
-        row.appendChild(data);
-        table.appendChild(row);
+  		var data = document.createElement("td");
+  		data.appendChild(document.createTextNode(start));
+  		row.appendChild(data);
+  		table.appendChild(row);
 
-        var data = document.createElement("td");
-        data.appendChild(document.createTextNode(end));
-        row.appendChild(data);
-        table.appendChild(row);
-  };
+  		var data = document.createElement("td");
+  		data.appendChild(document.createTextNode(end));
+  		row.appendChild(data);
+  		table.appendChild(row);
+
+		allShifts.push(myShift);
+
+  		};
+
+		
+
+function seeAll(event) {
+	console.log(allShifts);
+	}
+
   $("#submit").click(addShift);
-		</script>
 
-	</body>
+  $("#seeAll").click(seeAll);
+
+
+  
+
+	</script>
 
 </html>

@@ -1,3 +1,4 @@
+// PG2: Entering employee availability + see all
 
 // SECTION 1: TABS - This code is mostly from an online tutorial
 
@@ -101,7 +102,6 @@ var myShifts = [
 ];
 
 // Crazy long function to actually create the new tabs!
-var counter = 0;
 
 function createNewTabFn(){
     // Ask for the name
@@ -424,71 +424,109 @@ function createNewTabFn(){
     // Make the tabs work
     init();
 
-    // Function to add the shifts
-    function dynamAddShifts(myShiftArray) {
-      for (i = 0; i < myShiftArray.length; i++) {
-        for (j = 0; j < myShiftArray[i].length; j++) {
-          var shortCut = document.getElementsByClassName(myShiftArray[i][j])[counter];
-
-          // Save the values of i, j, and counter at time of creation
-          shortCut.setAttribute("data-i", i);
-          shortCut.setAttribute("data-j", j);
-          shortCut.setAttribute("data-counter", counter);
-
-          // Set original color of the shifts
-          shortCut.setAttribute("data-status", "available");
-
-          // Have color toggle with click
-          shortCut.addEventListener("click", toggleColorWithClick.bind(shortCut));
-        }
-      }
-    };
-
-    function toggleColorWithClick() {
-      var i = this.getAttribute("data-i")
-      var j = this.getAttribute("data-j")
-      var whichTab = this.getAttribute("data-counter")
-      var newShortCut = document.getElementsByClassName(myShifts[i][j])[whichTab];
-
-      if (this.getAttribute("data-status") == "available") {
-        for (k = 0; k < myShifts[i].length; k++) {
-          var newShortCut2 = document.getElementsByClassName(myShifts[i][k])[whichTab];
-          newShortCut2.setAttribute("data-status", "notAvailable");
-        }
-      } else {
-        for (k = 0; k < myShifts[i].length; k++) {
-          var newShortCut2 = document.getElementsByClassName(myShifts[i][k])[whichTab];
-          newShortCut2.setAttribute("data-status", "available");
-        }
-      }
-      }; 
-
-    dynamAddShifts(myShifts);
-
-    
-    // function toggleColorWithClick(myShiftArray) {
-    //   var newShortCut = document.getElementsByClassName(myShiftArray[0][0])[counter];
-    //   newShortCut.addEventListener("click", function() {
-    //     if (newShortCut.style.backgroundColor == "purple") {
-    //       for (k = 0; k < myShiftArray[0].length; k++) {
-    //         var newShortCut2 = document.getElementsByClassName(myShiftArray[0][k])[counter];
-    //         newShortCut2.style.backgroundColor = "orange";
-    //       }
-    //     } else {
-    //       for (k = 0; k < myShiftArray[0].length; k++) {
-    //         var newShortCut2 = document.getElementsByClassName(myShiftArray[0][k])[counter];
-    //         newShortCut2.style.backgroundColor = "purple";
-    //       }
-    //     }
-    //   });
-    // };
-
-    counter++;
 };
 
 
+// Function to add the shifts
+var counter = 0;
+
+function dynamAddShifts(myShiftArray, fnName) {
+  for (i = 0; i < myShiftArray.length; i++) {
+    for (j = 0; j < myShiftArray[i].length; j++) {
+      var shortCut = document.getElementsByClassName(myShiftArray[i][j])[counter];
+
+      // Save the values of i, j, and counter at time of creation
+      shortCut.setAttribute("data-i", i);
+      shortCut.setAttribute("data-j", j);
+      shortCut.setAttribute("data-counter", counter);
+
+      // Set original color of the shifts
+      shortCut.setAttribute("data-status", "available");
+
+      // Have color toggle with click
+      shortCut.addEventListener("click", fnName.bind(shortCut));
+    }
+  }
+  counter++;
+};
+
+function toggleColorWithClick() {
+  var i = this.getAttribute("data-i")
+  var j = this.getAttribute("data-j")
+  var whichTab = this.getAttribute("data-counter")
+  var newShortCut = document.getElementsByClassName(myShifts[i][j])[whichTab];
+
+  if (this.getAttribute("data-status") == "available") {
+    for (k = 0; k < myShifts[i].length; k++) {
+      var newShortCut2 = document.getElementsByClassName(myShifts[i][k])[whichTab];
+      newShortCut2.setAttribute("data-status", "notAvailable");
+    }
+  } else {
+    for (k = 0; k < myShifts[i].length; k++) {
+      var newShortCut2 = document.getElementsByClassName(myShifts[i][k])[whichTab];
+      newShortCut2.setAttribute("data-status", "available");
+    }
+  }
+}; 
+
+
 var tabButton = document.getElementById("newTab");
-tabButton.addEventListener("click", createNewTabFn);
+tabButton.addEventListener("click", function() {
+    createNewTabFn();
+    dynamAddShifts(myShifts,toggleColorWithClick);
+});
+
+// SECTION 3: ALL TAB
+
+function showWhosAvailable() {
+    var i = this.getAttribute("data-i")
+    var j = this.getAttribute("data-j")
+    var whichTab = this.getAttribute("data-counter")
+
+    var namesOfAvailable = [];
+
+    for (a = 0; a < counter-1; a++) {
+
+        var newShortCut3 = document.getElementsByClassName(myShifts[i][j])[a];
+
+        if (newShortCut3.getAttribute("data-status") == "available") {
+
+            var newShortCut4 = document.getElementsByClassName("tabContent")[a]
+            
+            var modalList = document.getElementById("nameList");
+
+            var modalListItem = document.createElement("li");
+            modalListItem.innerHTML = newShortCut4.getAttribute("id");
+
+            modalList.appendChild(modalListItem);
+            // for some reason this breaks it (and position seems to matter):
+            // modalList.innerHTML = "Available Employees: ";
+        }
+    }
+
+    overlayOpen();
+
+};
+
+function overlayOpen() {
+    var el = document.getElementById("overlay");
+    el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
+}
+
+function overlayClose() {
+    var el = document.getElementById("overlay");
+    el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
+    var modalList = document.getElementById("nameList");
+    while (modalList.hasChildNodes()) {
+        modalList.removeChild(modalList.firstChild);
+    }
+}
+
+var allButton = document.getElementById("seeAll");
+allButton.addEventListener("click", function() {
+    createNewTabFn();
+    dynamAddShifts(myShifts,showWhosAvailable);
+});
 
 
 

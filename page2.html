@@ -6,12 +6,21 @@
 </head>
 <body onload="init()" onload="createNewTabFn()">
 	<button id="newTab">Create New Tab</button>
+	<button id="seeAll">See All</button>
 
 	<ul id="tabs">
 		<!-- Dynamically added with each new tab with JS -->
 	</ul>
 
 	<!-- Table within a div dynamically added with each new tab with JS -->
+
+	<div id="overlay">
+		<div>
+			<ul id="nameList"></ul>
+			<!-- Adding names dynamically here with JS -->
+			<a href='#' onclick='overlayClose()'>close</a>
+		</div>
+	</div>
 
 	<script src="script.js"></script>
 </body>
