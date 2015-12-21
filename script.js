@@ -451,25 +451,27 @@ function dynamAddShifts(myShiftArray, fnName) {
 };
 
 function toggleColorWithClick() {
-  var i = this.getAttribute("data-i")
-  var j = this.getAttribute("data-j")
-  var whichTab = this.getAttribute("data-counter")
-  var newShortCut = document.getElementsByClassName(myShifts[i][j])[whichTab];
+    // Get the attributes of the td clicked
+    var i = this.getAttribute("data-i")
+    var j = this.getAttribute("data-j")
+    var whichTab = this.getAttribute("data-counter")
+    var newShortCut = document.getElementsByClassName(myShifts[i][j])[whichTab];
 
-  if (this.getAttribute("data-status") == "available") {
-    for (k = 0; k < myShifts[i].length; k++) {
-      var newShortCut2 = document.getElementsByClassName(myShifts[i][k])[whichTab];
-      newShortCut2.setAttribute("data-status", "notAvailable");
-    }
-  } else {
-    for (k = 0; k < myShifts[i].length; k++) {
-      var newShortCut2 = document.getElementsByClassName(myShifts[i][k])[whichTab];
-      newShortCut2.setAttribute("data-status", "available");
+    // If available, make not, if not, make available
+    if (this.getAttribute("data-status") == "available") {
+        for (k = 0; k < myShifts[i].length; k++) {
+            var newShortCut2 = document.getElementsByClassName(myShifts[i][k])[whichTab];
+            newShortCut2.setAttribute("data-status", "notAvailable");
+        }
+    } else {
+        for (k = 0; k < myShifts[i].length; k++) {
+            var newShortCut2 = document.getElementsByClassName(myShifts[i][k])[whichTab];
+            newShortCut2.setAttribute("data-status", "available");
     }
   }
 }; 
 
-
+// "Create New Tab" button
 var tabButton = document.getElementById("newTab");
 tabButton.addEventListener("click", function() {
     createNewTabFn();
@@ -479,33 +481,48 @@ tabButton.addEventListener("click", function() {
 // SECTION 3: ALL TAB
 
 function showWhosAvailable() {
+    // Get the attributes of the td clicked
     var i = this.getAttribute("data-i")
     var j = this.getAttribute("data-j")
     var whichTab = this.getAttribute("data-counter")
-
-    var namesOfAvailable = [];
+    var whatTime = this.getAttribute("class");
 
     for (a = 0; a < counter-1; a++) {
-
         var newShortCut3 = document.getElementsByClassName(myShifts[i][j])[a];
-
         if (newShortCut3.getAttribute("data-status") == "available") {
 
+            // get the Employee name out of the tab title
             var newShortCut4 = document.getElementsByClassName("tabContent")[a]
-            
+            var employeeName = newShortCut4.getAttribute("id");
+
+            // get the form to put the names in
             var modalList = document.getElementById("nameList");
 
-            var modalListItem = document.createElement("li");
-            modalListItem.innerHTML = newShortCut4.getAttribute("id");
+            // create needed elements
+            var modalListItemLabel = document.createElement("label");
+            var modalListItemInput = document.createElement("input");
+            var modalListItemText = document.createTextNode("    " + employeeName);
+            var modalListItemBreak = document.createElement("br");
 
-            modalList.appendChild(modalListItem);
+            // set attributes of the <input> tag
+            modalListItemInput.type = "radio";
+            modalListItemInput.value = employeeName;
+            modalListItemInput.name = "employeeOption";
+            modalListItemInput.setAttribute("data-whatTime", whatTime);
+
+            // Add the <input> and the text node onto the label
+            modalListItemLabel.appendChild(modalListItemInput);
+            modalListItemLabel.appendChild(modalListItemText);
+
+            // Add the label (and a line break) to the form
+            modalList.appendChild(modalListItemLabel);
+            modalList.appendChild(modalListItemBreak);
             // for some reason this breaks it (and position seems to matter):
             // modalList.innerHTML = "Available Employees: ";
         }
     }
-
+    // open the modal
     overlayOpen();
-
 };
 
 function overlayOpen() {
@@ -528,6 +545,19 @@ allButton.addEventListener("click", function() {
     dynamAddShifts(myShifts,showWhosAvailable);
 });
 
+var modalButton = document.getElementById("acceptSelection");
+modalButton.addEventListener("click", function() {
+    var radios = document.getElementsByName("employeeOption");
+    for (b = 0; b < radios.length; b++) {
+        if (radios[b].checked) {
+            var selectedTime = radios[b].getAttribute("data-whatTime")
+            var newShortCut5 = document.getElementsByClassName(selectedTime)[counter-1];
+            newShortCut5.innerHTML = radios[b].value;
+        }
+    }
+    // also close the modal
+    overlayClose();
+});
 
 
 
