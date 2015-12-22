@@ -103,9 +103,12 @@ var myShifts = [
 
 // Crazy long function to actually create the new tabs!
 
-function createNewTabFn(){
+function createNewTabFn(userEnteredName){
+
+    init();
+
     // Ask for the name
-    var userEnteredName = prompt("Employee's Name");
+    // var userEnteredName = prompt("Employee's Name");
 
     // Add the tab list item to the list of tabs
     var ul = document.getElementById("tabs");
@@ -419,7 +422,8 @@ function createNewTabFn(){
     newTable.appendChild(trRow11);
 
     div.appendChild(newTable);
-    document.body.appendChild(div);
+    var tables = document.getElementById("tables");
+    tables.appendChild(div);
 
     // Make the tabs work
     init();
@@ -473,10 +477,13 @@ function toggleColorWithClick() {
 
 // "Create New Tab" button
 var tabButton = document.getElementById("newTab");
-tabButton.addEventListener("click", function() {
-    createNewTabFn();
+tabButton.addEventListener("click", tabButtonFn);
+
+function tabButtonFn() {
+    var userEnteredName = prompt("Employee's Name");
+    createNewTabFn(userEnteredName);
     dynamAddShifts(myShifts,toggleColorWithClick);
-});
+};
 
 // SECTION 3: ALL TAB
 
@@ -541,9 +548,12 @@ function overlayClose() {
 
 var allButton = document.getElementById("seeAll");
 allButton.addEventListener("click", function() {
-    createNewTabFn();
+    createNewTabFn("ALL");
     dynamAddShifts(myShifts,showWhosAvailable);
+    var hideTabButton = document.getElementById("newTab");
+    hideTabButton.style.visibility = "hidden";
 });
+
 
 var modalButton = document.getElementById("acceptSelection");
 modalButton.addEventListener("click", function() {
@@ -558,9 +568,5 @@ modalButton.addEventListener("click", function() {
     // also close the modal
     overlayClose();
 });
-
-
-
-
 
 
