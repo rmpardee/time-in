@@ -54,14 +54,31 @@ ul#tabs li {
 	display: inline;
 }
 
-ul#tabs li a {
+/*ul#tabs li a#All {
 	color: #42454a;
 	background-color: #dedbde;
 	border: 3px solid black;
 	border-bottom: none;
+	font-size: 1.2em;
+	padding: 2em 0.3em 0.38em 0.3em;
+	margin-left:8%;
+	margin-right:1%;
+	text-decoration: none;
+}*/
+
+ul#tabs li a {
+	color: #42454a;
+	background-color: #dedbde;
+	/*border: 3px solid black;*/
+	border-bottom: none;
+	font-size: 1.2em;
 	padding: 0.7em 0.3em 0.38em 0.3em;
+	margin-left:1%;
+	margin-right:1%;
 	text-decoration: none;
 }
+
+
 
 ul#tabs li a:hover {
 	background-color: #f1f0ee;
@@ -71,33 +88,66 @@ ul#tabs li a.selected {
 	color: #000;
 	background-color: #f1f0ee;
 	font-weight: bold;
+	font-size: 1.2em;
 	padding: 0.7em 0.3em 0.38em 0.3em;
 }
 
 div.tabContent {
 	padding: 5%;
+	margin-left: 8%;
+	margin-right: 8%;
 	background-color: #f1f0ee;
 }
+
+/*div.tabContent#All {
+	padding: 5%;
+	margin-left: 8%;
+	margin-right: 8%;
+	background-color: #f1f0ee;
+}*/
 
 div.tabContent.hide {
 	display: none;
 }
 
+th {
+	text-align: center;
+}
+
+/*td {
+	width: 75px;
+	margin-left: 100px;
+	margin-right: 100px;
+}*/
+
 td.timelabel {
+	padding-right: 15px;
 	width: 1%;
+	text-align: right;
 	border: none;
 }
 
 td.daylabel {
 	border: none;
+/*	padding-bottom: 100px;*/
 }
 
+
+
 [data-status="available"] {
-	background-color: green;
+	background-color: #FFE60E;
 }
 
 [data-status="notAvailable"] {
-	background-color: red;
+	background-color: #444A4F;
+}
+
+button#newTab {
+	margin-top: 8%;
+}
+
+button#seeAll {
+	margin-top: 8%;
 }
 
 #overlay {

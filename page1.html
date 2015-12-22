@@ -36,15 +36,15 @@
 				<option id="wednesday">Wednesday</option>
 				<option id="thursday">Thursday</option>
 				<option id="friday">Friday</option>
-				<option id="saturday">Saturday</option>
-				<option id="sunday">Sunday</option>
+				<!-- <option id="saturday">Saturday</option>
+				<option id="sunday">Sunday</option> -->
 				</select>
 				</div>	
 
 				<div class="col-xs-3">
 				<select class = "startTime form-control" id="startTime">
 				<option value = "" disabled selected>Start Time</option>
-				<option class = "7">7:00 am</option>
+				<!-- <option class = "7">7:00 am</option> -->
 				<option class="8">8:00 am</option>
 				<option class="9">9:00 am</option>
 				<option class="10">10:00 am</option>
@@ -61,7 +61,7 @@
 				<div class="col-xs-3">
 				<select class = "endTime form-control" id = "endTime">
 				<option value="" disabled selected>End Time</option>
-				<option class="8">8:00 am</option>
+				<!-- <option class="8">8:00 am</option> -->
 				<option class='9"'>9:00 am</option>
 				<option class="10">10:00 am</option>
 				<option class="11">11:00 am</option>
@@ -97,89 +97,88 @@
 					</tr>
 				</tbody>
 			</table>
-			<a href="page2.html" class="btn btn-info" role="button" id="seeAll">Schedule shifts</a>
+			<a href="page2.html" class="btn btn-info" role="button" id="submitShiftsArray">Schedule shifts</a>
 		</div>
 			
 </div>
 	</body>
 
 	<script>
+
 var myShift = [];
-var allShifts = [];
+var myShifts = [];
 
 function addShift(event) {
   event.preventDefault(); // necessary to prevent the submitting of a form
-  		console.log("submitted");
-  		var table = document.getElementById("table");
-  		var day = $("#day option:selected").val();
+        console.log("submitted");
+        var table = document.getElementById("table");
+        var day = $("#day option:selected").attr("id");
+        var dayText = $("#day option:selected").val();
 
-  		var start = $("#startTime option:selected").val();
-  		var startTime = $("#startTime option:selected").attr("class");
-  		var startNum = Number(startTime);
+        var start = $("#startTime option:selected").val();
+        var startTime = $("#startTime option:selected").attr("class");
+        var startNum = Number(startTime);
 
-  		var end = $("#endTime option:selected").val();
-  		var endTime = $("#endTime option:selected").attr("class");
-  		var endNum = Number(endTime);
+        var end = $("#endTime option:selected").val();
+        var endTime = $("#endTime option:selected").attr("class");
+        var endNum = Number(endTime);
 
-  		if (startNum > endNum) {
-  				alert("Start time must be before end time. This shift will not be available to schedule.");
-  			};
-  		
-  		myShift = [];
+        if (startNum > endNum) {
+                alert("Start time must be before end time. This shift will not be available to schedule.");
+            };
+        
+        myShift = [];
 
-  		for (var i = startNum; i<endNum; i++) {
+        for (var i = startNum; i<endNum; i++) {
 
-  			if (i<=11) {
-  				var shiftText = (day + " am" + i);
-  			}
+            if (i<=11) {
+                var shiftText = (day + " am" + i);
+            }
 
-  			else if (i==12) {
-  				var shiftText = (day + " pm" + i);
-  			}
+            else if (i==12) {
+                var shiftText = (day + " pm" + i);
+            }
 
-  			else {
-  				var j = i-12;
-  				var shiftText = (day + " pm" + j);
-  			};
-  			myShift.push(shiftText);
-  		};
+            else {
+                var j = i-12;
+                var shiftText = (day + " pm" + j);
+            };
+            myShift.push(shiftText);
+        };
 
-  		console.log(myShift);
+        console.log("myshifts:", myShift);
 
 
-  		var row = document.createElement("tr");
-  		var data = document.createElement("td");
+        var row = document.createElement("tr");
+        var data = document.createElement("td");
 
-  		data.appendChild(document.createTextNode(day));
-  		row.appendChild(data);
-  		table.appendChild(row);
+        data.appendChild(document.createTextNode(dayText));
+        row.appendChild(data);
+        table.appendChild(row);
 
-  		var data = document.createElement("td");
-  		data.appendChild(document.createTextNode(start));
-  		row.appendChild(data);
-  		table.appendChild(row);
+        var data = document.createElement("td");
+        data.appendChild(document.createTextNode(start));
+        row.appendChild(data);
+        table.appendChild(row);
 
-  		var data = document.createElement("td");
-  		data.appendChild(document.createTextNode(end));
-  		row.appendChild(data);
-  		table.appendChild(row);
+        var data = document.createElement("td");
+        data.appendChild(document.createTextNode(end));
+        row.appendChild(data);
+        table.appendChild(row);
 
-		allShifts.push(myShift);
+        myShifts.push(myShift);
 
-  		};
+        };
 
-		
-
-function seeAll(event) {
-	console.log(allShifts);
-	}
+        
+// formerly "seeAll"
+function submitShiftsArray(event) {
+    console.log(myShifts);
+    }
 
   $("#submit").click(addShift);
 
-  $("#seeAll").click(seeAll);
-
-
-  
+  $("#submitShiftsArray").click(submitShiftsArray);
 
 	</script>
 

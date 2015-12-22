@@ -21,15 +21,18 @@
 		<!-- Our css file -->
 		<link rel="stylesheet" type="text/css" href="styling.css">
 	</head>
-	<body onload="init()" onload="createNewTabFn()">
-		<button id="newTab">Create New Tab</button>
-		<button id="seeAll">See All</button>
-
-		<ul id="tabs">
+	<body onload="tabButtonFn()">
+		<button class="btn btn-info" id="newTab">Create New Tab</button>
+		
+		<ul class="nav nav-tabs" id="tabs">
 			<!-- Dynamically added with each new tab with JS -->
 		</ul>
 
-		<!-- Table within a div dynamically added with each new tab with JS -->
+		<div id="tables">
+			<!-- Table within a div dynamically added with each new tab with JS -->
+		</div>
+		<br>
+		<button class="btn btn-info" id="seeAll">See All</button>
 
 		<div id="overlay">
 			<div>
@@ -38,7 +41,7 @@
 				</form>
 				<br>
 				<br>
-				<button id="acceptSelection">Schedule!</button>
+				<button class="btn btn-info" id="acceptSelection">Schedule!</button>
 				<br>
 				<br>
 				<a href='#' onclick='overlayClose()'>close</a>
