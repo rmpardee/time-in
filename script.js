@@ -2,70 +2,130 @@
 
 // SECTION 1: TABS - This code is mostly from an online tutorial
 
-var tabLinks = new Array();
-var contentDivs = new Array();
+var tabLinks = [];
+var contentDivs = [];
     
 function init() {
       // Grab the tab links and content divs from the page
+
+      // Get the child nodes of the ul with id 'tabs'
       var tabListItems = document.getElementById('tabs').childNodes;
+      // console.log("tabListItems: ", tabListItems);
+
+      // for each child of the ul with id 'tabs'
       for ( var i = 0; i < tabListItems.length; i++ ) {
+      	// if that child is an <li>
         if ( tabListItems[i].nodeName == "LI" ) {
-          var tabLink = getFirstChildWithTagName( tabListItems[i], 'A' );
-          var id = getHash( tabLink.getAttribute('href') );
-          tabLinks[id] = tabLink;
-          contentDivs[id] = document.getElementById( id );
+
+        	// whole <a> tag
+			var tabLink = getFirstChildWithTagName( tabListItems[i], 'A' );
+			// console.log("tabLink: ", tabLink);
+
+			// just the name
+			var id = getHash( tabLink.getAttribute('href') );
+			// console.log("id: ", id);
+
+			// assign the value of the whole <a> tag to the empty object
+			// tabLinks, with the key of their name
+			tabLinks[id] = tabLink;
+
+			// assign the elements with id = their name 
+			// to the empty object contentDivs, with the key of their name
+			contentDivs[id] = document.getElementById( id );
         }
       }
 
       // Assign onclick events to the tab links, and
       // highlight the first tab
-      var i = 0;
+      // var j = 0;
 
-      for ( var id in tabLinks ) {
+      // for the key of their name in the tabLinks object (now the <a> tag)
+      // for ( var id in tabLinks ) {
+      	// // clicking on the <a> calls the showTab function
+      	// // var selectedId = getHash( tabLink.getAttribute('href') )
+      	// tabLinks[id].addEventListener("click", function() {
+      	// 	showTab(id)
+      	// });
+       //  // tabLinks[id].onclick = showTab(id);
+
+       //  // when the <a> is focused, remove focus (??)
+       //  // tabLinks[id].onfocus = function() { this.blur() };
+
+       //  // if j is zero, add the class "selected";
+       //  // if ( j == 0 ) 
+       //  	tabLinks[id].className = 'selected';
+       //  j++;
+
+       for ( var id in tabLinks ) {
         tabLinks[id].onclick = showTab;
         tabLinks[id].onfocus = function() { this.blur() };
-        if ( i == 0 ) tabLinks[id].className = 'selected';
-        i++;
+       //  tabLinks[id].className = 'selected';
+      	// contentDivs[id].className = 'tabContent';
+
+        // if ( j == 0 ) tabLinks[id].className = 'selected';
+        // j++;
       }
+
+      // }
 
       // Hide all content divs except the first
-      var i = 0;
 
-      for ( var id in contentDivs ) {
-        if ( i != 0 ) contentDivs[id].className = 'tabContent hide';
-        i++;
-      }
-    }
+      // var j = 0;
+
+      // // for the key of their name in the tabLinks object (the element with id= their name)
+      // for ( var id in contentDivs ) {
+      // 	// if j is not zero, set classes "tabContent" and "hide"
+      //   if ( j != 0 ) contentDivs[id].className = 'tabContent hide';
+      //   j++;
+      // }
+      // showTab();
+
+		// set the class of the element with id = their name to "tabContent"
+		
+}
 
 function showTab() {
-      var selectedId = getHash( this.getAttribute('href') );
+	// their name of "this"
+	var selectedId = getHash( this.getAttribute('href') );
 
-      // Highlight the selected tab, and dim all others.
-      // Also show the selected content div, and hide all others.
-      for ( var id in contentDivs ) {
-        if ( id == selectedId ) {
-          tabLinks[id].className = 'selected';
-          contentDivs[id].className = 'tabContent';
-        } else {
-          tabLinks[id].className = '';
-          contentDivs[id].className = 'tabContent hide';
-        }
-      }
+	// Highlight the selected tab, and dim all others.
+	// Also show the selected content div, and hide all others.
 
-      // Stop the browser following the link
-      return false;
-    }
+	// for the element with id= their name
+	for ( var id in contentDivs ) {
+		// if the name equals the name clicked in this
+		if ( id == selectedId ) {
+			// set the class of the <a> to "selected"
+			tabLinks[id].className = 'selected';
+			// set the class of the element with id = their name to "tabContent"
+			contentDivs[id].className = 'tabContent';
+		} else {
+			// else set remove the class name of the object
+			tabLinks[id].className = '';
+			// and add class "hide" to the element with id = their name
+			contentDivs[id].className = 'tabContent hide';
+		}
+	}
+
+	// Stop the browser following the link
+	return false;
+}
 
 function getFirstChildWithTagName( element, tagName ) {
-      for ( var i = 0; i < element.childNodes.length; i++ ) {
-        if ( element.childNodes[i].nodeName == tagName ) return element.childNodes[i];
-      }
+	for ( var i = 0; i < element.childNodes.length; i++ ) {
+		// if there's a node with the name of the argument tagName, return that node
+    	if ( element.childNodes[i].nodeName == tagName ) {
+    		return element.childNodes[i];
+    	}
     }
+}
 
 function getHash( url ) {
-      var hashPos = url.lastIndexOf ( '#' );
-      return url.substring( hashPos + 1 );
-    }
+	// position in the string of the URL with the #
+	var hashPos = url.lastIndexOf ( '#' );
+	// return everything after the # (just the name)
+    return url.substring( hashPos + 1 );
+}
 
 
 // SECTION 2: CREATING NEW TABS
@@ -105,7 +165,7 @@ var myShifts = [
 
 function createNewTabFn(userEnteredName){
 
-    init();
+    // init();
 
     // Ask for the name
     // var userEnteredName = prompt("Employee's Name");
@@ -461,7 +521,7 @@ function toggleColorWithClick() {
     var whichTab = this.getAttribute("data-counter")
     var newShortCut = document.getElementsByClassName(myShifts[i][j])[whichTab];
 
-    // If available, make not, if not, make available
+    // If available, make not; if not, make available
     if (this.getAttribute("data-status") == "available") {
         for (k = 0; k < myShifts[i].length; k++) {
             var newShortCut2 = document.getElementsByClassName(myShifts[i][k])[whichTab];
@@ -471,9 +531,20 @@ function toggleColorWithClick() {
         for (k = 0; k < myShifts[i].length; k++) {
             var newShortCut2 = document.getElementsByClassName(myShifts[i][k])[whichTab];
             newShortCut2.setAttribute("data-status", "available");
-    }
-  }
+    	}
+  	}
 }; 
+
+// creates a click on demand
+function eventFire(whatWasClicked) {
+  if (whatWasClicked.fireEvent) {
+    whatWasClicked.fireEvent('on' + 'click');
+  } else {
+    var evObj = document.createEvent('Events');
+    evObj.initEvent('click', true, false);
+    whatWasClicked.dispatchEvent(evObj);
+  }
+}
 
 // "Create New Tab" button
 var tabButton = document.getElementById("newTab");
@@ -483,6 +554,9 @@ function tabButtonFn() {
     var userEnteredName = prompt("Employee's Name");
     createNewTabFn(userEnteredName);
     dynamAddShifts(myShifts,toggleColorWithClick);
+    eventFire(tabLinks[userEnteredName]);
+    // showTab();
+    // showTab(userEnteredName);
 };
 
 // SECTION 3: ALL TAB
@@ -552,6 +626,7 @@ allButton.addEventListener("click", function() {
     dynamAddShifts(myShifts,showWhosAvailable);
     var hideTabButton = document.getElementById("newTab");
     hideTabButton.style.visibility = "hidden";
+    eventFire(tabLinks["ALL"]);
 });
 
 
