@@ -6,82 +6,36 @@ var tabLinks = [];
 var contentDivs = [];
     
 function init() {
-      // Grab the tab links and content divs from the page
+	// 1. Grab the tab links and content divs from the page
 
-      // Get the child nodes of the ul with id 'tabs'
-      var tabListItems = document.getElementById('tabs').childNodes;
-      // console.log("tabListItems: ", tabListItems);
-
-      // for each child of the ul with id 'tabs'
-      for ( var i = 0; i < tabListItems.length; i++ ) {
-      	// if that child is an <li>
-        if ( tabListItems[i].nodeName == "LI" ) {
-
-        	// whole <a> tag
+	// Get the child nodes of the ul with id 'tabs'
+	var tabListItems = document.getElementById('tabs').childNodes;
+	// for each child of the ul with id 'tabs'
+	for ( var i = 0; i < tabListItems.length; i++ ) {
+		// if that child is an <li>
+		if ( tabListItems[i].nodeName == "LI" ) {
+			// whole <a> tag
 			var tabLink = getFirstChildWithTagName( tabListItems[i], 'A' );
-			// console.log("tabLink: ", tabLink);
-
 			// just the name
 			var id = getHash( tabLink.getAttribute('href') );
-			// console.log("id: ", id);
-
 			// assign the value of the whole <a> tag to the empty object
 			// tabLinks, with the key of their name
 			tabLinks[id] = tabLink;
-
 			// assign the elements with id = their name 
 			// to the empty object contentDivs, with the key of their name
 			contentDivs[id] = document.getElementById( id );
-        }
-      }
+		}
+	}
 
-      // Assign onclick events to the tab links, and
-      // highlight the first tab
-      // var j = 0;
+	// 2. Assign onclick events to the tab links
 
-      // for the key of their name in the tabLinks object (now the <a> tag)
-      // for ( var id in tabLinks ) {
-      	// // clicking on the <a> calls the showTab function
-      	// // var selectedId = getHash( tabLink.getAttribute('href') )
-      	// tabLinks[id].addEventListener("click", function() {
-      	// 	showTab(id)
-      	// });
-       //  // tabLinks[id].onclick = showTab(id);
-
-       //  // when the <a> is focused, remove focus (??)
-       //  // tabLinks[id].onfocus = function() { this.blur() };
-
-       //  // if j is zero, add the class "selected";
-       //  // if ( j == 0 ) 
-       //  	tabLinks[id].className = 'selected';
-       //  j++;
-
-       for ( var id in tabLinks ) {
-        tabLinks[id].onclick = showTab;
-        tabLinks[id].onfocus = function() { this.blur() };
-       //  tabLinks[id].className = 'selected';
-      	// contentDivs[id].className = 'tabContent';
-
-        // if ( j == 0 ) tabLinks[id].className = 'selected';
-        // j++;
-      }
-
-      // }
-
-      // Hide all content divs except the first
-
-      // var j = 0;
-
-      // // for the key of their name in the tabLinks object (the element with id= their name)
-      // for ( var id in contentDivs ) {
-      // 	// if j is not zero, set classes "tabContent" and "hide"
-      //   if ( j != 0 ) contentDivs[id].className = 'tabContent hide';
-      //   j++;
-      // }
-      // showTab();
-
-		// set the class of the element with id = their name to "tabContent"
-		
+	// for the key of their name in the tabLinks object (now the <a> tag)
+	for ( var id in tabLinks ) {
+		// clicking on the <a> calls the showTab function
+		tabLinks[id].onclick = showTab;
+		// when the <a> is focused, remove focus (??)
+		tabLinks[id].onfocus = function() { this.blur() };
+	}		
 }
 
 function showTab() {
@@ -546,20 +500,49 @@ function eventFire(whatWasClicked) {
   }
 }
 
-// "Create New Tab" button
-var tabButton = document.getElementById("newTab");
-tabButton.addEventListener("click", tabButtonFn);
-
 function tabButtonFn() {
-    var userEnteredName = prompt("Employee's Name");
+    var userEnteredName = document.getElementById("employeeNameTextInput").value;
+    overlayClose1();
     createNewTabFn(userEnteredName);
     dynamAddShifts(myShifts,toggleColorWithClick);
     eventFire(tabLinks[userEnteredName]);
-    // showTab();
-    // showTab(userEnteredName);
 };
 
+function overlayOpen1() {
+    var el = document.getElementById("overlay1");
+    el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
+}
+
+function overlayClose1() {
+    var el = document.getElementById("overlay1");
+    el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
+    document.getElementById("employeeNameTextInput").value = "";
+}
+
+// Button: Open "Create Employee" modal
+var initEmployeeInfoModalButton = document.getElementById("initEmployeeInfoModal");
+initEmployeeInfoModalButton.addEventListener("click", overlayOpen1);
+
+// Button: Submit "Create Employee" modal
+var employeeInfoModalButton = document.getElementById("createNewEmployeeTab");
+employeeInfoModalButton.addEventListener("click", tabButtonFn);
+
+
 // SECTION 3: ALL TAB
+
+function overlayOpen2() {
+    var el = document.getElementById("overlay2");
+    el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
+}
+
+function overlayClose2() {
+    var el = document.getElementById("overlay2");
+    el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
+    var modalList = document.getElementById("nameList");
+    while (modalList.hasChildNodes()) {
+        modalList.removeChild(modalList.firstChild);
+    }
+}
 
 function showWhosAvailable() {
     // Get the attributes of the td clicked
@@ -603,33 +586,20 @@ function showWhosAvailable() {
         }
     }
     // open the modal
-    overlayOpen();
+    overlayOpen2();
 };
 
-function overlayOpen() {
-    var el = document.getElementById("overlay");
-    el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
-}
-
-function overlayClose() {
-    var el = document.getElementById("overlay");
-    el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
-    var modalList = document.getElementById("nameList");
-    while (modalList.hasChildNodes()) {
-        modalList.removeChild(modalList.firstChild);
-    }
-}
-
+// Button: Creat "All" tab
 var allButton = document.getElementById("seeAll");
 allButton.addEventListener("click", function() {
     createNewTabFn("ALL");
     dynamAddShifts(myShifts,showWhosAvailable);
-    var hideTabButton = document.getElementById("newTab");
+    var hideTabButton = document.getElementById("initEmployeeInfoModal");
     hideTabButton.style.visibility = "hidden";
     eventFire(tabLinks["ALL"]);
 });
 
-
+// Button: "All" tab modal submission ("Schedule!")
 var modalButton = document.getElementById("acceptSelection");
 modalButton.addEventListener("click", function() {
     var radios = document.getElementsByName("employeeOption");
@@ -641,7 +611,5 @@ modalButton.addEventListener("click", function() {
         }
     }
     // also close the modal
-    overlayClose();
+    overlayClose2();
 });
-
-
