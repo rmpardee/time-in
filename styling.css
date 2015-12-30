@@ -29,6 +29,10 @@ img {
 	padding-top: 50px;
 }
 
+.nav-tabs {
+	border-bottom: none;
+}
+
 #addMore {
 	border: solid 1px, #D3EAFC;
 	border-radius: 50%;
@@ -37,6 +41,8 @@ img {
 
 table {
 	font-family: "Lato", sans-serif;
+	border-collapse: separate;
+	border-spacing: 10px 0px;
 }
 
 .container {
@@ -46,35 +52,24 @@ table {
 
 ul#tabs {
 	list-style-type: none;
-	margin: 10% 10% 0 10%;
-	padding: 0.3em 0.3em 0.3em 0;
+	margin: 2% 20% 0 10%;
+	padding: 0.3em 0.5em 0 0.5em;
 }
 
 ul#tabs li {
 	display: inline;
+	width: 100px;
+	padding: 0.5em 0 0 0.5em;
 }
-
-/*ul#tabs li a#All {
-	color: #42454a;
-	background-color: #dedbde;
-	border: 3px solid black;
-	border-bottom: none;
-	font-size: 1.2em;
-	padding: 2em 0.3em 0.38em 0.3em;
-	margin-left:8%;
-	margin-right:1%;
-	text-decoration: none;
-}*/
 
 ul#tabs li a {
 	color: #42454a;
 	background-color: #dedbde;
-	/*border: 3px solid black;*/
 	border-bottom: none;
 	font-size: 1.2em;
 	padding: 0.7em 0.3em 0.38em 0.3em;
-	margin-left:1%;
-	margin-right:1%;
+	margin-left:3%;
+	margin-right:3%;
 	text-decoration: none;
 }
 
@@ -99,39 +94,31 @@ div.tabContent {
 	background-color: #f1f0ee;
 }
 
-/*div.tabContent#All {
-	padding: 5%;
-	margin-left: 8%;
-	margin-right: 8%;
-	background-color: #f1f0ee;
-}*/
-
 div.tabContent.hide {
 	display: none;
 }
 
 th {
 	text-align: center;
+	padding-bottom: 7px;
 }
 
-/*td {
-	width: 75px;
-	margin-left: 100px;
-	margin-right: 100px;
-}*/
+td {
+	width: 100px;
+	height: 40px;
+}
 
 td.timelabel {
 	padding-right: 15px;
 	width: 1%;
 	text-align: right;
+	vertical-align: top;
 	border: none;
 }
 
 td.daylabel {
 	border: none;
-/*	padding-bottom: 100px;*/
 }
-
 
 
 [data-status="available"] {
@@ -142,14 +129,23 @@ td.daylabel {
 	background-color: #444A4F;
 }
 
+/*Buttons*/
+button#initEmployeeInfoModal {
+	margin: auto;
+	margin-top: 3%;
+}
+
 button#createNewEmployeeTab {
 	margin-top: 8%;
 }
 
 button#seeAll {
-	margin-top: 8%;
+	margin-top: 3%;
+	float: right;
+	margin-right: 50px;
 }
 
+/*Overlays*/
 #overlay1 {
      position: absolute;
      left: 0px;
