@@ -21,8 +21,28 @@
 		<!-- Our css file -->
 		<link rel="stylesheet" type="text/css" href="styling.css">
 	</head>
-	<body onload="tabButtonFn()">
-		<button class="btn btn-info" id="newTab">Create New Tab</button>
+	<body onload="overlayOpen1()">
+		<button class="btn btn-info" id="initEmployeeInfoModal">Add an Employee</button>
+
+		<div id="overlay1">
+			<div>
+				<form id="nameInput">
+					<br>
+					<label>Employee's Name: </label>
+					<br>
+					<br>
+					<input id="employeeNameTextInput" type="text" name="emplName" value="" autofocus="autofocus" onkeydown="if (event.keyCode == 13)
+                        document.getElementById('createNewEmployeeTab').click()">
+					</input>
+				</form>
+				<br>
+				<br>
+				<button class="btn btn-info" id="createNewEmployeeTab">Let's go!</button>
+				<br>
+				<br>
+				<a href='#' onclick='overlayClose1()'>close</a>
+			</div>
+		</div>
 		
 		<ul class="nav nav-tabs" id="tabs">
 			<!-- Dynamically added with each new tab with JS -->
@@ -34,7 +54,7 @@
 		<br>
 		<button class="btn btn-info" id="seeAll">See All</button>
 
-		<div id="overlay">
+		<div id="overlay2">
 			<div>
 				<form id="nameList">
 					<!-- Adding names dynamically here with JS -->
@@ -44,7 +64,7 @@
 				<button class="btn btn-info" id="acceptSelection">Schedule!</button>
 				<br>
 				<br>
-				<a href='#' onclick='overlayClose()'>close</a>
+				<a href='#' onclick='overlayClose2()'>close</a>
 			</div>
 		</div>
 

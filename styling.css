@@ -142,7 +142,7 @@ td.daylabel {
 	background-color: #444A4F;
 }
 
-button#newTab {
+button#createNewEmployeeTab {
 	margin-top: 8%;
 }
 
@@ -150,7 +150,26 @@ button#seeAll {
 	margin-top: 8%;
 }
 
-#overlay {
+#overlay1 {
+     position: absolute;
+     left: 0px;
+     top: 0px;
+     width:100%;
+     height:100%;
+     text-align:center;
+     z-index: 1000;
+}
+
+#overlay1 div {
+     width:300px;
+     margin: 100px auto;
+     background-color: #fff;
+     border:1px solid #000;
+     padding:15px;
+     text-align:center;
+}
+
+#overlay2 {
      visibility: hidden;
      position: absolute;
      left: 0px;
@@ -161,7 +180,7 @@ button#seeAll {
      z-index: 1000;
 }
 
-#overlay div {
+#overlay2 div {
      width:300px;
      margin: 100px auto;
      background-color: #fff;
