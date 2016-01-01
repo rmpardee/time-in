@@ -2,16 +2,19 @@
 
 // SECTION 1: TABS - This code is mostly from an online tutorial
 
-var tabLinks = [];
-var contentDivs = [];
+// var tabLinks = {initEntryModalKey: "<a id=\"initEntryModal\">+</a>"};
+var tabLinks = {};
+// var contentDivs = {initEntryModalKey: "<a id=\"initEntryModal\">+</a>"};
+var contentDivs = {};
     
 function init() {
 	// 1. Grab the tab links and content divs from the page
 
 	// Get the child nodes of the ul with id 'tabs'
 	var tabListItems = document.getElementById('tabs').childNodes;
+	console.log("tabListItems: ", tabListItems);
 	// for each child of the ul with id 'tabs'
-	for ( var i = 0; i < tabListItems.length; i++ ) {
+	for ( var i = 2; i < tabListItems.length; i++ ) {
 		// if that child is an <li>
 		if ( tabListItems[i].nodeName == "LI" ) {
 			// whole <a> tag
@@ -33,14 +36,16 @@ function init() {
 	for ( var id in tabLinks ) {
 		// clicking on the <a> calls the showTab function
 		tabLinks[id].onclick = showTab;
-		// when the <a> is focused, remove focus (??)
-		tabLinks[id].onfocus = function() { this.blur() };
+		// (??) when the <a> is focused, remove focus (??)
+		// tabLinks[id].onfocus = function() { this.blur() };
 	}		
 }
 
 function showTab() {
 	// their name of "this"
 	var selectedId = getHash( this.getAttribute('href') );
+	console.log("selectedId: ", selectedId);
+	console.log("contentDivs: ", contentDivs);
 
 	// Highlight the selected tab, and dim all others.
 	// Also show the selected content div, and hide all others.
@@ -49,11 +54,13 @@ function showTab() {
 	for ( var id in contentDivs ) {
 		// if the name equals the name clicked in this
 		if ( id == selectedId ) {
+			console.log("true");
 			// set the class of the <a> to "selected"
 			tabLinks[id].className = 'selected';
 			// set the class of the element with id = their name to "tabContent"
 			contentDivs[id].className = 'tabContent';
 		} else {
+			console.log("false");
 			// else set remove the class name of the object
 			tabLinks[id].className = '';
 			// and add class "hide" to the element with id = their name
@@ -502,6 +509,7 @@ function eventFire(whatWasClicked) {
 
 function tabButtonFn() {
     var userEnteredName = document.getElementById("employeeNameTextInput").value;
+    console.log("userEnteredName: ", userEnteredName);
     overlayClose1();
     createNewTabFn(userEnteredName);
     dynamAddShifts(myShifts,toggleColorWithClick);
@@ -520,8 +528,8 @@ function overlayClose1() {
 }
 
 // Button: Open "Create Employee" modal
-var initEmployeeInfoModalButton = document.getElementById("initEmployeeInfoModal");
-initEmployeeInfoModalButton.addEventListener("click", overlayOpen1);
+var initEntryModalButton = document.getElementById("initEntryModal");
+initEntryModalButton.addEventListener("click", overlayOpen1);
 
 // Button: Submit "Create Employee" modal
 var employeeInfoModalButton = document.getElementById("createNewEmployeeTab");
@@ -594,7 +602,7 @@ var allButton = document.getElementById("seeAll");
 allButton.addEventListener("click", function() {
     createNewTabFn("ALL");
     dynamAddShifts(myShifts,showWhosAvailable);
-    var hideTabButton = document.getElementById("initEmployeeInfoModal");
+    var hideTabButton = document.getElementById("initEntryModal");
     hideTabButton.style.visibility = "hidden";
     eventFire(tabLinks["ALL"]);
 });
