@@ -4,6 +4,8 @@ body {
 	text-align: center;
 }
 
+/*Pg 1*/
+
 h2 {
 	letter-spacing: 3px;
 	font-weight: 300;
@@ -29,31 +31,45 @@ img {
 	padding-top: 50px;
 }
 
-.nav-tabs {
-	border-bottom: none;
-}
-
 #addMore {
 	border: solid 1px, #D3EAFC;
 	border-radius: 50%;
 	padding: 10px;
 }
 
-table {
-	font-family: "Lato", sans-serif;
-	border-collapse: separate;
-	border-spacing: 10px 0px;
+/*PG 2*/
+
+/*Buttons*/
+
+/*button#initEmployeeInfoModal {
+	margin: auto;
+	margin-top: 3%;
+}*/
+
+button#createNewEmployeeTab {
+	margin-top: 8%;
 }
 
-.container {
-	font-family: "Lato", sans-serif;
-	
+button#seeAll {
+	/*position: fixed;*/
+	margin-top: 0%;
+	/*margin-bottom: 3%;*/
+	/*margin: auto;*/
+	float: right;
+	margin-right: 50px;
 }
+
+/*Tabs*/
+
+.nav-tabs {
+	border-bottom: none;
+}
+
 
 ul#tabs {
 	list-style-type: none;
-	margin: 2% 20% 0 10%;
-	padding: 0.3em 0.5em 0 0.5em;
+	margin: 5% 20% 0 10%;
+/*	padding: 0.3em 0.5em 0 0.5em;*/
 }
 
 ul#tabs li {
@@ -87,6 +103,8 @@ ul#tabs li a.selected {
 	padding: 0.7em 0.3em 0.38em 0.3em;
 }
 
+/*Tables*/
+
 div.tabContent {
 	padding: 5%;
 	margin-left: 8%;
@@ -96,6 +114,17 @@ div.tabContent {
 
 div.tabContent.hide {
 	display: none;
+}
+
+table {
+	font-family: "Lato", sans-serif;
+	border-collapse: separate;
+	border-spacing: 10px 0px;
+}
+
+.container {
+	font-family: "Lato", sans-serif;
+	
 }
 
 th {
@@ -120,6 +149,7 @@ td.daylabel {
 	border: none;
 }
 
+/*Shifts*/
 
 [data-status="available"] {
 	background-color: #FFE60E;
@@ -129,21 +159,7 @@ td.daylabel {
 	background-color: #444A4F;
 }
 
-/*Buttons*/
-button#initEmployeeInfoModal {
-	margin: auto;
-	margin-top: 3%;
-}
 
-button#createNewEmployeeTab {
-	margin-top: 8%;
-}
-
-button#seeAll {
-	margin-top: 3%;
-	float: right;
-	margin-right: 50px;
-}
 
 /*Overlays*/
 #overlay1 {
