@@ -538,12 +538,17 @@ employeeInfoModalButton.addEventListener("click", tabButtonFn);
 
 function overlayOpen2() {
     var el = document.getElementById("overlay2");
-    el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
+    el.style.visibility = "visible";
 }
 
 function overlayClose2() {
+    // make the overlay hidden
     var el = document.getElementById("overlay2");
-    el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
+    el.style.visibility = "hidden";
+    // make the button hidden
+    var acceptSelButton = document.getElementById("acceptSelection");
+    acceptSelButton.style.visibility = "hidden";
+    // remove the list items from the form
     var modalList = document.getElementById("nameList");
     while (modalList.hasChildNodes()) {
         modalList.removeChild(modalList.firstChild);
@@ -557,16 +562,17 @@ function showWhosAvailable() {
     var whichTab = this.getAttribute("data-counter")
     var whatTime = this.getAttribute("class");
 
+    // get the form to put the names in
+    var modalList = document.getElementById("nameList");
+
     for (a = 0; a < counter-1; a++) {
         var newShortCut3 = document.getElementsByClassName(myShifts[i][j])[a];
+
         if (newShortCut3.getAttribute("data-status") == "available") {
 
             // get the Employee name out of the tab title
             var newShortCut4 = document.getElementsByClassName("tabContent")[a]
             var employeeName = newShortCut4.getAttribute("id");
-
-            // get the form to put the names in
-            var modalList = document.getElementById("nameList");
 
             // create needed elements
             var modalListItemLabel = document.createElement("label");
@@ -589,8 +595,21 @@ function showWhosAvailable() {
             modalList.appendChild(modalListItemBreak);
             // for some reason this breaks it (and position seems to matter):
             // modalList.innerHTML = "Available Employees: ";
+
+            // make sure the button is visible
+            document.getElementById("acceptSelection").style.visibility = "visible";
         }
     }
+
+    // If there's no one available, present text and hide the button
+    if (modalList.hasChildNodes() == false) {
+        // Add the text to the form in the overlay
+        modalList.appendChild(document.createTextNode(
+            "Sorry, no one is available for this shift!"));
+        // Hide the button
+        document.getElementById("acceptSelection").style.visibility = "hidden";
+    }
+
     // open the modal
     overlayOpen2();
 };
@@ -604,6 +623,7 @@ allButton.addEventListener("click", function() {
     hideTabButton.style.visibility = "hidden";
     allButton.style.visibility = "hidden";
     eventFire(tabLinks["ALL"]);
+    overlayClose2();
 });
 
 // Button: "All" tab modal submission ("Schedule!")
