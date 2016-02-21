@@ -1,3 +1,7 @@
+html {
+	display: inline-block;
+}
+
 body {
 	font-family: "Lato", sans-serif;
 	margin: auto;
@@ -51,7 +55,8 @@ button#createNewEmployeeTab {
 }
 
 button#seeAll {
-	/*position: fixed;*/
+	display: block;
+	vertical-align: top;
 	margin-top: 0%;
 	/*margin-bottom: 3%;*/
 	/*margin: auto;*/
@@ -78,6 +83,11 @@ ul#tabs li {
 	padding: 0.5em 0 0 0.5em;
 }
 
+ul#tabs li#all {
+	float: right;
+	margin-right: 3%;
+}
+
 ul#tabs li a {
 	color: #42454a;
 	background-color: #dedbde;
@@ -88,8 +98,6 @@ ul#tabs li a {
 	margin-right:3%;
 	text-decoration: none;
 }
-
-
 
 ul#tabs li a:hover {
 	background-color: #f1f0ee;
@@ -109,6 +117,8 @@ div.tabContent {
 	padding: 5%;
 	margin-left: 8%;
 	margin-right: 8%;
+	margin-bottom: 8%;
+	border-radius: 8px;
 	background-color: #f1f0ee;
 }
 
