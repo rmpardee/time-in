@@ -12,9 +12,8 @@ function init() {
 
 	// Get the child nodes of the ul with id 'tabs'
 	var tabListItems = document.getElementById('tabs').childNodes;
-	console.log("tabListItems: ", tabListItems);
 	// for each child of the ul with id 'tabs'
-	for ( var i = 2; i < tabListItems.length; i++ ) {
+	for ( var i = 0; i < (tabListItems.length - 5); i++ ) {
 		// if that child is an <li>
 		if ( tabListItems[i].nodeName == "LI" ) {
 			// whole <a> tag
@@ -44,8 +43,6 @@ function init() {
 function showTab() {
 	// their name of "this"
 	var selectedId = getHash( this.getAttribute('href') );
-	console.log("selectedId: ", selectedId);
-	console.log("contentDivs: ", contentDivs);
 
 	// Highlight the selected tab, and dim all others.
 	// Also show the selected content div, and hide all others.
@@ -54,13 +51,11 @@ function showTab() {
 	for ( var id in contentDivs ) {
 		// if the name equals the name clicked in this
 		if ( id == selectedId ) {
-			console.log("true");
 			// set the class of the <a> to "selected"
 			tabLinks[id].className = 'selected';
 			// set the class of the element with id = their name to "tabContent"
 			contentDivs[id].className = 'tabContent';
 		} else {
-			console.log("false");
 			// else set remove the class name of the object
 			tabLinks[id].className = '';
 			// and add class "hide" to the element with id = their name
@@ -124,7 +119,7 @@ var myShifts = [
 
 // Crazy long function to actually create the new tabs!
 
-function createNewTabFn(userEnteredName){
+function createNewTabFn(userEnteredName, allOrNot){
 
     // init();
 
@@ -134,12 +129,16 @@ function createNewTabFn(userEnteredName){
     // Add the tab list item to the list of tabs
     var ul = document.getElementById("tabs");
     var li = document.createElement("li");
+    li.id = allOrNot;
     var aTag = document.createElement("a");
     aTag.href = "#" + userEnteredName;
     aTag.innerHTML = userEnteredName;
 
     li.appendChild(aTag);
-    ul.appendChild(li);
+
+    // Add it after all the other tabs but before the "+" tab (last 5 children)
+    var noOfTabs = ul.childNodes.length;
+    ul.insertBefore(li, ul.childNodes[noOfTabs - 5]);
 
     // div
     var div = document.createElement("div");
@@ -509,7 +508,6 @@ function eventFire(whatWasClicked) {
 
 function tabButtonFn() {
     var userEnteredName = document.getElementById("employeeNameTextInput").value;
-    console.log("userEnteredName: ", userEnteredName);
     overlayClose1();
     createNewTabFn(userEnteredName);
     dynamAddShifts(myShifts,toggleColorWithClick);
@@ -597,13 +595,14 @@ function showWhosAvailable() {
     overlayOpen2();
 };
 
-// Button: Creat "All" tab
+// Button: Create "All" tab
 var allButton = document.getElementById("seeAll");
 allButton.addEventListener("click", function() {
-    createNewTabFn("ALL");
+    createNewTabFn("ALL", "all");
     dynamAddShifts(myShifts,showWhosAvailable);
     var hideTabButton = document.getElementById("initEntryModal");
     hideTabButton.style.visibility = "hidden";
+    allButton.style.visibility = "hidden";
     eventFire(tabLinks["ALL"]);
 });
 
