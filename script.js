@@ -601,16 +601,31 @@ function showWhosAvailable() {
         }
     }
 
+    console.log("modalList.children.length: " + modalList.children.length);
+
+    // If there's one person available, present name with no radio
+    if (modalList.children.length == 2) {
+        var radios = document.getElementsByName("employeeOption");
+        radios[0].checked = true;
+        radios[0].style.visibility = "hidden";
+        // modalList.children[0].style.visibility = "hidden";
+
+        // modalList.appendChild(document.createElement("br"));
+        modalList.appendChild(document.createTextNode(
+            /*radios[0].value + */" is the only person available for this shift."));
+    }
+
     // If there's no one available, present text and hide the button
-    if (modalList.hasChildNodes() == false) {
+    if (modalList.children.length == 0) {
         // Add the text to the form in the overlay
+        modalList.appendChild(document.createElement("br"));
         modalList.appendChild(document.createTextNode(
             "Sorry, no one is available for this shift!"));
         // Hide the button
         document.getElementById("acceptSelection").style.visibility = "hidden";
     }
 
-    // open the modal
+    // Open the modal
     overlayOpen2();
 };
 
@@ -630,13 +645,22 @@ allButton.addEventListener("click", function() {
 var modalButton = document.getElementById("acceptSelection");
 modalButton.addEventListener("click", function() {
     var radios = document.getElementsByName("employeeOption");
+    var modalList = document.getElementById("nameList");
     for (b = 0; b < radios.length; b++) {
         if (radios[b].checked) {
             var selectedTime = radios[b].getAttribute("data-whatTime")
             var newShortCut5 = document.getElementsByClassName(selectedTime)[counter-1];
             newShortCut5.innerHTML = radios[b].value;
+            overlayClose2();
         }
+        // else {
+        //     modalList.appendChild(document.createElement("br"));
+        //     modalList.appendChild(document.createTextNode(
+        //         "Please select someone for this shift."));
+        //     modalList.appendChild(document.createElement("br"));
+        //     break;
+        // }
     }
     // also close the modal
-    overlayClose2();
+    // overlayClose2();
 });
